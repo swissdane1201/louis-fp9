@@ -2566,7 +2566,7 @@ function tuneSkill(k){
   var rs=S.runs.filter(function(r){return r.end&&(r.skills||[]).indexOf(k)>=0;}).slice(-6);
   var hinted=rs.filter(function(r){return r.hintMax>=1;}), helped=hinted.filter(function(r){return r.hintMax===1&&r.status==='rigtig';}), hs=a.hintStart[k]||1;
   if(hs===1&&hinted.length>=3&&helped.length/hinted.length<0.3){a.hintStart[k]=2;adaptLog('hint_start',skillLabel(k)+': første ledetråd hjalp sjældent – hjælpen starter nu ved "hvilket kort".',{skill:k});}
-  else if(hs===2&&hinted.length>=3&&helped.length/hinted.length>=0.6){a.hintStart[k]=1;adaptLog('hint_start',skillLabel(k)+': hjælpen starter igen ved den lille hjælp.',{skill:k});}
+  else if(hs===2&&hinted.length>=3&&helped.length/hinted.length>=0.6){a.hintStart[k]=1;adaptLog('hint_start',skillLabel(k)+': hjælpen starter igen ved det lille skub.',{skill:k});}
 }
 function roundLen(mode){var a=AD();return a.roundLen[mode]||MODES[mode].n;}
 function tuneRoundLength(mode){
@@ -3250,7 +3250,7 @@ function ladder(){
   var hs=Math.max.apply(null,(task.skills||['x']).map(function(k){return AD().hintStart[k]||1;}));
   var lvl=Math.min(3,run.hintMax?run.hintMax+1:hs); run.hintMax=lvl; run.hintTimes=run.hintTimes||[]; run.hintTimes.push(now()-run.start);
   log('hint',{level:lvl,source:'stige'});
-  var names=['','Lille hjælp','Hvilket kort?','Første trin'], h=ver.hints[lvl-1];
+  var names=['','Lille skub','Hvilket kort?','Første trin'], h=ver.hints[lvl-1];
   var html='<span class="lvl">Hjælp '+lvl+' af 3 · '+names[lvl]+' <button class="ibtn sm" id="hintsay" aria-label="Læs hjælpen op">🔊</button></span>'+md(h);
   if(lvl>=2) html+='<br>'+task.cards.slice(0,2).map(function(c){return '<button class="tbtn" data-show="'+esc(c)+'">Vis kortet: '+esc(CT[c]||c)+' →</button>';}).join(' ');
   if(lvl<3) html+='<br><button class="tbtn quietb" id="more">Mere hjælp</button>';
