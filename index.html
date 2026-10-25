@@ -2,6 +2,7 @@
 <html lang="da">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TRÆNING – Formelsamling FP9 – Louis</title>
 <style>*{box-sizing:border-box}
@@ -446,6 +447,37 @@ body.train{display:grid;grid-template-columns:minmax(400px,42%) 1fr;height:100vh
 @media (max-width:520px){.tiles{grid-template-columns:1fr}.sumgrid{grid-template-columns:1fr 1fr 1fr}.tcard .task-text{font-size:1.22rem}}
 .secchip{display:inline-flex;align-items:center;gap:.35em;font-size:.85em;font-weight:600;padding:.1em .55em;border-radius:999px;background:#fff;border:2px solid var(--c);color:#23202f;margin-left:.3em;white-space:nowrap}.secchip .cdot{display:inline-block;width:.7em;height:.7em;border-radius:3px;background:var(--c)}
 #cloudview{position:fixed;top:0;left:0;right:0;z-index:96;background:#1e3a8a;color:#fff;font-weight:700;padding:8px 16px;text-align:center}#cloudview .btn{margin-left:10px;padding:4px 14px;min-height:0}
+
+/* v1.9 plan step */
+.planbox{background:#fff;border:3px solid #5b21b6;border-radius:18px;padding:16px 18px;margin:14px 0}
+.plhead{display:flex;flex-direction:column;gap:2px;margin-bottom:4px}.plhead b{font-size:1.25rem}
+.plstep{font-size:.85rem;font-weight:700;color:#5b21b6;text-transform:uppercase;letter-spacing:.04em}
+.plsub{margin:2px 0 10px;color:#3b3650}
+.numchips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 10px}
+.nchip{font-size:1.15rem;font-weight:800;min-width:64px;justify-content:center}
+.nchip.on{background:#ede9fe;border-color:#5b21b6;color:#3b0764;box-shadow:inset 0 0 0 2px #5b21b6}
+.nchip.skipn{text-decoration:line-through;opacity:.55}
+.slots{list-style:none;padding:0;margin:8px 0;counter-reset:sl}
+.slots li{counter-increment:sl;display:flex;align-items:center;gap:10px;min-height:48px;margin:6px 0;padding:4px 8px;border:2px dashed #b9b3c9;border-radius:12px}
+.slots li::before{content:counter(sl);font-weight:800;color:#5b21b6;width:1.4em;text-align:center}
+.slots li.full{border-style:solid;border-color:#5b21b6;background:#faf8ff}
+.slots li.locked{background:#f1ecff}
+.slotph{color:#6b6680;font-style:italic}
+.sch{flex:1;text-align:left;justify-content:flex-start}
+.pool{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.pstep{text-align:left;justify-content:flex-start;font-weight:600}
+.plfb{min-height:1.4em;margin-top:8px;font-weight:700}
+.plfb.no{color:#b91c1c}.plfb.ok{color:#15803d}.plfb.tip{color:#23202f;background:#fef9c3;border-radius:10px;padding:8px 10px;font-weight:600}
+.plskip{margin-top:10px}
+.planbox .btn:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.6)}
+.myplan{background:#faf8ff;border:2px solid #ddd6fe;border-radius:14px;padding:10px 14px;margin:0 0 12px}
+.myplan ol{margin:6px 0 0;padding-left:1.4em}.myplan li{margin:3px 0}
+.myplan input{width:1.1em;height:1.1em;vertical-align:-2px;margin-right:4px}
+.mpgoal{color:#5b21b6;font-weight:700}
+.nmask{display:inline-block;background:#e9e5f5;color:#5b21b6;border-radius:6px;padding:0 6px;font-weight:800;letter-spacing:-.05em}
+.plancard{border-color:#5b21b6}
+.intro.news{border-color:#5b21b6;background:#faf8ff}.intro.news ol{margin:4px 0 6px}.intro.news p{margin:6px 0}
+.sklist{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}.skrow{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;padding:14px 16px;border-radius:14px;border:2px solid #b9b3c9;background:#fffcf5;font:inherit;font-weight:700;cursor:pointer;min-height:56px}.skrow:hover{border-color:#5b21b6}.skrow.done{border-color:#15803d}.skp{font-weight:600;color:#4b4660;white-space:nowrap;font-size:.92rem}.skrow.done .skp{color:#15803d}
 </style>
 
 </head>
@@ -1535,7 +1567,7 @@ window.UseCard={open:open,close:close,recipes:R,has:function(id){return !!R[id];
 })();
 
 </script>
-<script>window.TRAIN={"version": "1.8 (2026-10-20)", "tasks": [{"id": "sko-nike", "title": "Sko i butikken", "skills": ["pct_antal"], "wef": "analytisk", "cards": ["pct-hvor"], "type": "num", "versions": [{"text": "Din skobutik solgte 40 par sko i weekenden.\n12 par var Nike.\n\nHvor mange **procent** af skoene var Nike?", "answer": 30.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 12, "msg": "Du skrev antallet af par. Opgaven spørger om procent.", "tag": "antal_i_stedet_for_procent"}, {"v": 0.3, "msg": "Tæt på! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 333.333333, "msg": "Du byttede om. Del ÷ hele: 12 ÷ 40.", "tag": "byttede_del_hele", "tol": 0.5}], "hints": ["Spørger opgaven om et antal eller om procent?", "Brug kortet \"Hvor mange procent?\".", "Del ÷ hele · 100 = 12 ÷ 40 · 100"], "sentence": "Nike var 30 % af skoene."}, {"text": "Din skobutik solgte 36 par sko i weekenden.\n9 par var Adidas.\n\nHvor mange **procent** af skoene var Adidas?", "answer": 25.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 9, "msg": "Du skrev antallet af par. Opgaven spørger om procent.", "tag": "antal_i_stedet_for_procent"}, {"v": 0.25, "msg": "Tæt på! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 400, "msg": "Du byttede om. Del ÷ hele: 9 ÷ 36.", "tag": "byttede_del_hele", "tol": 0.5}], "hints": ["Spørger opgaven om et antal eller om procent?", "Brug kortet \"Hvor mange procent?\".", "Del ÷ hele · 100 = 9 ÷ 36 · 100"], "sentence": "Adidas var 25 % af skoene."}]}, {"id": "hoodie-foer", "title": "Prisen før", "skills": ["pct_baglaens"], "wef": "kritisk", "cards": ["baglaens", "faktor"], "type": "num", "versions": [{"text": "En hættetrøje koster nu 560 kr.\nPrisen er steget 12 %.\n\nHvad kostede den **før**?", "answer": 500.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 492.8, "msg": "Du trak 12 % fra 560. Men de 12 % er regnet af den GAMLE pris. Regn baglæns.", "tag": "baglaens_traekker_fra"}, {"v": 627.2, "msg": "Du lagde 12 % til igen. Prisen før er MINDRE end nu.", "tag": "baglaens_ganger"}], "hints": ["Er prisen før større eller mindre end 560 kr?", "Brug kortet \"Baglæns procent\".", "Før = ny ÷ 1,12 = 560 ÷ 1,12"], "sentence": "Hættetrøjen kostede 500 kr før."}, {"text": "En hættetrøje koster nu 448 kr.\nPrisen er steget 12 %.\n\nHvad kostede den **før**?", "answer": 400.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 394.24, "msg": "Du trak 12 % fra 448. Men de 12 % er regnet af den GAMLE pris. Regn baglæns.", "tag": "baglaens_traekker_fra"}, {"v": 501.76, "msg": "Du lagde 12 % til igen. Prisen før er MINDRE end nu.", "tag": "baglaens_ganger"}], "hints": ["Er prisen før større eller mindre end 448 kr?", "Brug kortet \"Baglæns procent\".", "Før = ny ÷ 1,12 = 448 ÷ 1,12"], "sentence": "Hættetrøjen kostede 400 kr før."}]}, {"id": "jakke-moms", "title": "Pris uden moms", "skills": ["moms", "pct_baglaens"], "wef": "analytisk", "cards": ["moms"], "type": "num", "versions": [{"text": "I din webshop koster en jakke 1.000 kr **med** moms.\n\nHvad er prisen **uden** moms?", "answer": 800.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 750, "msg": "Du trak 25 % fra. Momsen er lagt oven på prisen uden moms. Del med 1,25.", "tag": "moms_minus_25"}, {"v": 1250, "msg": "Du lagde moms til. Prisen uden moms er mindre.", "tag": "moms_lagt_til"}, {"v": 200, "msg": "Det er selve momsen. Opgaven spørger om prisen uden moms.", "tag": "svarede_momsen"}], "hints": ["Moms er 25 % OVENI prisen uden moms.", "Brug kortet \"Moms (25 %)\".", "Uden moms = 1.000 ÷ 1,25"], "sentence": "Jakken koster 800 kr uden moms."}, {"text": "I din webshop koster en jakke 1.250 kr **med** moms.\n\nHvad er prisen **uden** moms?", "answer": 1000.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 937.5, "msg": "Du trak 25 % fra. Momsen er lagt oven på prisen uden moms. Del med 1,25.", "tag": "moms_minus_25"}, {"v": 1562.5, "msg": "Du lagde moms til. Prisen uden moms er mindre.", "tag": "moms_lagt_til"}, {"v": 250, "msg": "Det er selve momsen. Opgaven spørger om prisen uden moms.", "tag": "svarede_momsen"}], "hints": ["Moms er 25 % OVENI prisen uden moms.", "Brug kortet \"Moms (25 %)\".", "Uden moms = 1.250 ÷ 1,25"], "sentence": "Jakken koster 1.000 kr uden moms."}]}, {"id": "skate-fald", "title": "Rabat i procent", "skills": ["pct_aendring", "pct_antal"], "wef": "analytisk", "cards": ["pct-aendr", "rabat"], "type": "num", "versions": [{"text": "Et skateboard kostede 500 kr.\nNu koster det 400 kr.\n\nHvor mange **procent** er prisen faldet?", "answer": 20.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 100, "msg": "Det er faldet i kroner. Opgaven vil have procent.", "tag": "kr_i_stedet_for_procent"}, {"v": 25, "msg": "Du delte med den NYE pris. Del med den gamle pris (500).", "tag": "delte_med_ny"}, {"v": 80, "msg": "80 % er det, der er tilbage. Hvor meget er faldet?", "tag": "tilbage_i_stedet_for_fald"}], "hints": ["Find først faldet i kroner.", "Brug kortet \"Procentvis ændring\".", "(500 − 400) ÷ 500 · 100"], "sentence": "Prisen er faldet 20 %."}, {"text": "Et skateboard kostede 800 kr.\nNu koster det 680 kr.\n\nHvor mange **procent** er prisen faldet?", "answer": 15.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 120, "msg": "Det er faldet i kroner. Opgaven vil have procent.", "tag": "kr_i_stedet_for_procent"}, {"v": 17.647059, "msg": "Du delte med den NYE pris. Del med den gamle pris (800).", "tag": "delte_med_ny", "tol": 0.3}, {"v": 85, "msg": "85 % er det, der er tilbage. Hvor meget er faldet?", "tag": "tilbage_i_stedet_for_fald"}], "hints": ["Find først faldet i kroner.", "Brug kortet \"Procentvis ændring\".", "(800 − 680) ÷ 800 · 100"], "sentence": "Prisen er faldet 15 %."}]}, {"id": "kasket-op-ned", "title": "Op 10 % og ned 10 %", "skills": ["faktor"], "wef": "kritisk", "cards": ["faktor"], "type": "num", "versions": [{"text": "En kasket koster 500 kr.\nPrisen stiger 10 %. Bagefter falder den 10 %.\n\nHvad koster kasketten **nu**?", "answer": 495.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 500, "msg": "Mange tror det! Men de 10 % ned er regnet af en højere pris. Regn ét trin ad gangen.", "tag": "procent_op_ned_ophaever"}], "hints": ["Regn først prisen efter stigningen.", "Brug kortet \"Fremskrivningsfaktor\".", "500 · 1,10 · 0,90"], "sentence": "Kasketten koster nu 495 kr. Det er 5 kr mindre end før."}, {"text": "En kasket koster 800 kr.\nPrisen stiger 20 %. Bagefter falder den 20 %.\n\nHvad koster kasketten **nu**?", "answer": 768.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 800, "msg": "Mange tror det! Men de 20 % ned er regnet af en højere pris. Regn ét trin ad gangen.", "tag": "procent_op_ned_ophaever"}], "hints": ["Regn først prisen efter stigningen.", "Brug kortet \"Fremskrivningsfaktor\".", "800 · 1,20 · 0,80"], "sentence": "Kasketten koster nu 768 kr. Det er 32 kr mindre end før."}]}, {"id": "kaffe-haeldning", "title": "Overskud pr. kop", "skills": ["graf"], "wef": "analytisk", "cards": ["haeldning", "tabel", "linear"], "type": "num", "versions": [{"text": "Tabellen viser overskuddet i en kaffebar.\n\nHvor mange kr stiger overskuddet for **hver ekstra kop**?", "table": [["Solgte kopper (x)", "50", "100", "150", "200"], ["Overskud i kr (y)", "100", "300", "500", "700"]], "answer": 4.0, "tol": 0.01, "unit": "kr pr. kop", "wrong": [{"v": 200, "msg": "Du brugte række 1, 2, 3 som x. x er antal kopper: 50, 100, 150 …", "tag": "graf_raekkenumre"}, {"v": 0.25, "msg": "Du byttede om. Hældning = ændring i y ÷ ændring i x.", "tag": "haeldning_byttet", "tol": 0.005}, {"v": 2, "msg": "Overskud ÷ kopper virker kun, hvis grafen går gennem (0, 0). Brug to punkter.", "tag": "haeldning_y_div_x"}], "hints": ["Hvad er x, og hvad er y? x står i øverste række.", "Brug kortet \"Hældning ud fra to punkter\".", "a = (300 − 100) ÷ (100 − 50)"], "sentence": "Overskuddet stiger 4 kr for hver ekstra kop."}, {"text": "Tabellen viser overskuddet i en juicebar.\n\nHvor mange kr stiger overskuddet for **hver ekstra juice**?", "table": [["Solgte juice (x)", "20", "40", "60", "80"], ["Overskud i kr (y)", "−60", "0", "60", "120"]], "answer": 3.0, "tol": 0.01, "unit": "kr pr. juice", "wrong": [{"v": 60, "msg": "Du brugte række 1, 2, 3 som x. x er antal juice: 20, 40, 60 …", "tag": "graf_raekkenumre"}, {"v": 0.333333, "msg": "Du byttede om. Hældning = ændring i y ÷ ændring i x.", "tag": "haeldning_byttet", "tol": 0.01}, {"v": -3, "msg": "Overskud ÷ antal virker kun, hvis grafen går gennem (0, 0). Brug to punkter.", "tag": "haeldning_y_div_x"}], "hints": ["Hvad er x, og hvad er y? x står i øverste række.", "Brug kortet \"Hældning ud fra to punkter\".", "a = (0 − (−60)) ÷ (40 − 20)"], "sentence": "Overskuddet stiger 3 kr for hver ekstra juice."}]}, {"id": "aktier", "title": "Aktier i webshoppen", "skills": ["ligning_tekst"], "wef": "analytisk", "cards": ["ligning", "formler"], "type": "num", "versions": [{"text": "Emma og Noah starter en webshop.\nEmma har 3 gange så mange aktier som Noah.\nTilsammen har de 120 aktier.\n\nHvor mange aktier har **Noah**?", "answer": 30.0, "tol": 0, "unit": "aktier", "wrong": [{"v": 40, "msg": "Du delte med 3. Men der er 4 dele i alt: Noah = x og Emma = 3x.", "tag": "ligning_forkert_opstilling"}, {"v": 90, "msg": "Det er Emmas aktier. Opgaven spørger om Noah.", "tag": "svarede_forkert_person"}], "hints": ["Kald Noahs aktier for x. Hvor mange har Emma så?", "Brug kortet \"Ligninger\".", "x + 3x = 120 → 4x = 120"], "sentence": "Noah har 30 aktier."}, {"text": "Emma og Noah starter en webshop.\nEmma har 2 gange så mange aktier som Noah.\nTilsammen har de 96 aktier.\n\nHvor mange aktier har **Noah**?", "answer": 32.0, "tol": 0, "unit": "aktier", "wrong": [{"v": 48, "msg": "Du delte med 2. Men der er 3 dele i alt: Noah = x og Emma = 2x.", "tag": "ligning_forkert_opstilling"}, {"v": 64, "msg": "Det er Emmas aktier. Opgaven spørger om Noah.", "tag": "svarede_forkert_person"}], "hints": ["Kald Noahs aktier for x. Hvor mange har Emma så?", "Brug kortet \"Ligninger\".", "x + 2x = 96 → 3x = 96"], "sentence": "Noah har 32 aktier."}]}, {"id": "jubilaeum", "title": "Butikkens alder", "skills": ["ligning_tekst"], "wef": "analytisk", "cards": ["ligning"], "type": "num", "versions": [{"text": "En butik holder fødselsdag.\nOm 6 år er butikken dobbelt så gammel, som den var for 6 år siden.\n\nHvor gammel er butikken **nu**?", "answer": 18, "tol": 0, "unit": "år", "wrong": [{"v": 12, "msg": "Husk at gange begge tal i parentesen med 2: 2 · (x − 6) = 2x − 12.", "tag": "parentes_gange"}, {"v": 24, "msg": "Det er alderen om 6 år. Opgaven spørger om alderen nu.", "tag": "svarede_forkert_tidspunkt"}], "hints": ["Kald alderen nu for x. Hvad er alderen om 6 år? Og for 6 år siden?", "Brug kortet \"Ligninger\".", "x + 6 = 2 · (x − 6)"], "sentence": "Butikken er 18 år nu. Tjek: 24 = 2 · 12."}, {"text": "En butik holder fødselsdag.\nOm 4 år er butikken dobbelt så gammel, som den var for 4 år siden.\n\nHvor gammel er butikken **nu**?", "answer": 12, "tol": 0, "unit": "år", "wrong": [{"v": 8, "msg": "Husk at gange begge tal i parentesen med 2: 2 · (x − 4) = 2x − 8.", "tag": "parentes_gange"}, {"v": 16, "msg": "Det er alderen om 4 år. Opgaven spørger om alderen nu.", "tag": "svarede_forkert_tidspunkt"}], "hints": ["Kald alderen nu for x. Hvad er alderen om 4 år? Og for 4 år siden?", "Brug kortet \"Ligninger\".", "x + 4 = 2 · (x − 4)"], "sentence": "Butikken er 12 år nu. Tjek: 16 = 2 · 8."}]}, {"id": "stand-budget", "title": "Budget til en salgsstand", "skills": ["ulighed"], "wef": "argument", "cards": ["ulighed"], "type": "num", "versions": [{"text": "Du har 1.000 kr til en salgsstand.\nLeje af standen koster 250 kr.\nÉn kasse sodavand koster 35 kr.\n\nHvor mange kasser kan du **højst** købe?", "answer": 21, "tol": 0, "unit": "kasser", "wrong": [{"v": 22, "msg": "Med 22 kasser bruger du 1.020 kr. Det er over budgettet. Rund NED.", "tag": "ulighed_rundede_op"}, {"v": 21.428571, "msg": "Du kan ikke købe en del af en kasse. Svar med et helt tal.", "tag": "ulighed_ikke_heltal", "tol": 0.05}, {"v": 28, "msg": "Du glemte lejen på 250 kr.", "tag": "glemte_fast_udgift"}, {"v": 28.571429, "msg": "Du glemte lejen på 250 kr.", "tag": "glemte_fast_udgift", "tol": 0.01}], "hints": ["\"Højst\" betyder: du må ikke bruge mere end 1.000 kr.", "Brug kortet \"Uligheder\".", "250 + 35 · x ≤ 1.000"], "sentence": "Jeg kan højst købe 21 kasser (250 + 21 · 35 = 985 kr)."}, {"text": "Du har 800 kr til en salgsstand.\nLeje af standen koster 200 kr.\nÉn kasse juice koster 45 kr.\n\nHvor mange kasser kan du **højst** købe?", "answer": 13, "tol": 0, "unit": "kasser", "wrong": [{"v": 14, "msg": "Med 14 kasser bruger du 830 kr. Det er over budgettet. Rund NED.", "tag": "ulighed_rundede_op"}, {"v": 13.333333, "msg": "Du kan ikke købe en del af en kasse. Svar med et helt tal.", "tag": "ulighed_ikke_heltal", "tol": 0.05}, {"v": 17, "msg": "Du glemte lejen på 200 kr.", "tag": "glemte_fast_udgift"}, {"v": 17.777778, "msg": "Du glemte lejen på 200 kr.", "tag": "glemte_fast_udgift", "tol": 0.01}], "hints": ["\"Højst\" betyder: du må ikke bruge mere end 800 kr.", "Brug kortet \"Uligheder\".", "200 + 45 · x ≤ 800"], "sentence": "Jeg kan højst købe 13 kasser (200 + 13 · 45 = 785 kr)."}]}, {"id": "leverandoer", "title": "Vælg leverandør", "skills": ["break_even", "ligning_tekst"], "wef": "argument", "cards": ["skaering", "linear"], "type": "num", "versions": [{"text": "Leverandør A: 400 kr fast + 12 kr pr. stk.\nLeverandør B: 20 kr pr. stk.\n\nVed hvor mange stk. koster de **det samme**?", "answer": 50.0, "tol": 0, "unit": "stk.", "wrong": [{"v": 20, "msg": "Husk at A også koster 12 kr pr. stk.", "tag": "glemte_ene_led"}, {"v": 33.333333, "msg": "Husk at B koster 20 kr pr. stk.", "tag": "glemte_ene_led", "tol": 0.05}, {"v": 1000, "msg": "Det er prisen. Opgaven spørger om antal stk.", "tag": "svarede_pris"}], "hints": ["Skriv en pris-forskrift for hver leverandør.", "Brug kortet \"Skæring mellem to linjer\".", "400 + 12x = 20x → 400 = 8x"], "sentence": "Ved 50 stk. koster begge 1.000 kr. Køber du flere end 50, er A billigst."}, {"text": "Leverandør A: 270 kr fast + 15 kr pr. stk.\nLeverandør B: 24 kr pr. stk.\n\nVed hvor mange stk. koster de **det samme**?", "answer": 30.0, "tol": 0, "unit": "stk.", "wrong": [{"v": 11.25, "msg": "Husk at A også koster 15 kr pr. stk.", "tag": "glemte_ene_led", "tol": 0.05}, {"v": 18, "msg": "Husk at B koster 24 kr pr. stk.", "tag": "glemte_ene_led"}, {"v": 720, "msg": "Det er prisen. Opgaven spørger om antal stk.", "tag": "svarede_pris"}], "hints": ["Skriv en pris-forskrift for hver leverandør.", "Brug kortet \"Skæring mellem to linjer\".", "270 + 15x = 24x → 270 = 9x"], "sentence": "Ved 30 stk. koster begge 720 kr. Køber du flere end 30, er A billigst."}]}, {"id": "baand-vandret", "title": "Transportbånd: vandret", "skills": ["trig_side"], "wef": "analytisk", "cards": ["tan-side", "sider", "trig"], "type": "num", "versions": [{"text": "På lageret løfter et transportbånd kasser 1,5 m op.\nBåndet hælder 25°.\n\nHvor langt er der **vandret** fra start til slut?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">25°<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">vandret = ?<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">1,5 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\">båndet<\/text>\n<\/svg>", "answer": 3.21676, "tol": 0.05, "unit": "m", "wrong": [{"v": 0.699461, "msg": "Du gangede med tan. Vandret er hosliggende: hos = mod ÷ tan(v).", "tag": "tan_gange_dividere", "tol": 0.02}, {"v": 3.549302, "msg": "Det er båndets længde (hypotenusen). Vandret er hosliggende.", "tag": "hosliggende_hypotenuse", "tol": 0.02}, {"v": -11.233733, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.05}], "hints": ["Hvilken side er 1,5 m? Hvilken side skal du finde?", "Brug kortet \"Find en side med tan\".", "vandret = 1,5 ÷ tan(25°)"], "sentence": "Der er 3,22 m vandret."}, {"text": "På lageret løfter et transportbånd kasser 2 m op.\nBåndet hælder 30°.\n\nHvor langt er der **vandret** fra start til slut?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">30°<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">vandret = ?<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">2 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\">båndet<\/text>\n<\/svg>", "answer": 3.464102, "tol": 0.05, "unit": "m", "wrong": [{"v": 1.154701, "msg": "Du gangede med tan. Vandret er hosliggende: hos = mod ÷ tan(v).", "tag": "tan_gange_dividere", "tol": 0.02}, {"v": 4.0, "msg": "Det er båndets længde (hypotenusen). Vandret er hosliggende.", "tag": "hosliggende_hypotenuse", "tol": 0.02}, {"v": -0.31224, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.05}], "hints": ["Hvilken side er 2 m? Hvilken side skal du finde?", "Brug kortet \"Find en side med tan\".", "vandret = 2 ÷ tan(30°)"], "sentence": "Der er 3,46 m vandret."}]}, {"id": "baand-vinkel", "title": "Transportbånd: vinklen", "skills": ["trig_vinkel"], "wef": "analytisk", "cards": ["find-vinkel", "sider"], "type": "num", "versions": [{"text": "Et transportbånd løfter kasser 1,2 m op.\nDen vandrette afstand er 4 m.\n\nHvor mange **grader** hælder båndet?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">v = ?<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">4 m<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">1,2 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\"><\/text>\n<\/svg>", "answer": 16.699244, "tol": 0.1, "unit": "°", "wrong": [{"v": 17.457603, "msg": "Du brugte sin. 4 m er vandret (hosliggende), ikke hypotenusen. Brug tan⁻¹.", "tag": "hosliggende_hypotenuse", "tol": 0.1}, {"v": 73.300756, "msg": "Det er vinklen øverst. Opgaven spørger om vinklen ved jorden.", "tag": "forkert_vinkel", "tol": 0.1}, {"v": 0.291457, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.01}], "hints": ["Du kender modstående og hosliggende. Hvilken af sin, cos, tan bruger de to?", "Brug kortet \"Find en vinkel\".", "v = tan⁻¹(1,2 ÷ 4)"], "sentence": "Båndet hælder 16,7°."}, {"text": "Et transportbånd løfter kasser 1,5 m op.\nDen vandrette afstand er 2,5 m.\n\nHvor mange **grader** hælder båndet?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">v = ?<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">2,5 m<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">1,5 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\"><\/text>\n<\/svg>", "answer": 30.963757, "tol": 0.1, "unit": "°", "wrong": [{"v": 36.869898, "msg": "Du brugte sin. 2,5 m er vandret (hosliggende), ikke hypotenusen. Brug tan⁻¹.", "tag": "hosliggende_hypotenuse", "tol": 0.1}, {"v": 59.036243, "msg": "Det er vinklen øverst. Opgaven spørger om vinklen ved jorden.", "tag": "forkert_vinkel", "tol": 0.1}, {"v": 0.54042, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.01}], "hints": ["Du kender modstående og hosliggende. Hvilken af sin, cos, tan bruger de to?", "Brug kortet \"Find en vinkel\".", "v = tan⁻¹(1,5 ÷ 2,5)"], "sentence": "Båndet hælder 31,0°."}]}, {"id": "ai-vinkel", "title": "Find fejlen i AI-svaret", "skills": ["trig_graense"], "wef": "kritisk_ai", "cards": ["sider", "vinkelsum"], "type": "choice", "versions": [{"text": "En AI skriver:\n\"Transportbåndet kan hælde 95°. Så bliver det vandrette stykke kort.\"\n\nHvad er **fejlen**?", "choices": ["95° er for meget. En spids vinkel i en retvinklet trekant er under 90°.", "Der er ingen fejl.", "Vinklen skal være over 100°.", "Det vandrette stykke bliver minus, og det er fint."], "answer": 0, "wrong": [{"v": 1, "msg": "Tjek: 90° + 95° = 185°. Der er kun 180° i en trekant.", "tag": "accepterede_ai_fejl"}, {"v": 2, "msg": "Over 90° kan ikke være i en retvinklet trekant.", "tag": "vinkel_over_90"}, {"v": 3, "msg": "En længde kan aldrig være minus.", "tag": "negativ_laengde"}], "hints": ["Hvor mange grader er der i alt i en trekant? Hvor meget bruger den rette vinkel?", "Brug kortet \"Vinkelsum i trekant\".", "90° + 95° = 185°. Det er mere end 180°."], "sentence": "Fejlen: vinklen skal være under 90°."}, {"text": "En AI skriver:\n\"Båndet hælder 30° og løfter 2 m. Det vandrette stykke er −0,31 m.\"\n\nHvad er **fejlen**?", "choices": ["En længde kan ikke være minus. AI'en har regnet i radianer.", "Der er ingen fejl. Minus betyder baglæns.", "Vinklen skulle være minus.", "Båndet skal hælde over 90°."], "answer": 0, "wrong": [{"v": 1, "msg": "En længde kan aldrig være minus. Tjek altid om svaret giver mening.", "tag": "negativ_laengde"}, {"v": 2, "msg": "Vinkler i en trekant er altid over 0°.", "tag": "negativ_vinkel"}, {"v": 3, "msg": "Over 90° kan ikke være i en retvinklet trekant.", "tag": "vinkel_over_90"}], "hints": ["Kan en længde være minus?", "Brug kortet \"Navne på siderne\".", "2 ÷ tan(30°) = 3,46 m. I radianer får man −0,31."], "sentence": "Fejlen: en længde kan ikke være minus. Det rigtige svar er 3,46 m."}]}, {"id": "cafe-middeltal", "title": "Gennemsnit i caféen", "skills": ["grupperet"], "wef": "analytisk", "cards": ["grupperet", "middeltal"], "type": "num", "versions": [{"text": "En café har talt, hvor meget kunderne køber for.\n\nFind **middeltallet** (gennemsnittet) pr. kunde.", "table": [["Køb i kr", "0–50", "50–100", "100–150"], ["Antal kunder", "8", "12", "5"]], "answer": 69.0, "tol": 0.1, "unit": "kr", "wrong": [{"v": 44.0, "msg": "Du brugte venstre kant (0, 50, 100). Brug midtpunkterne: 25, 75, 125.", "tag": "grupperet_venstre_kant", "tol": 0.1}, {"v": 94.0, "msg": "Du brugte højre kant. Brug midtpunkterne: 25, 75, 125.", "tag": "grupperet_hoejre_kant", "tol": 0.1}, {"v": 8.333333, "msg": "Du tog gennemsnit af antal kunder. Gang hvert midtpunkt med antal først.", "tag": "gennemsnit_af_antal", "tol": 0.05}, {"v": 75, "msg": "Du tog gennemsnit af midtpunkterne. Husk at gange med antal kunder.", "tag": "glemte_hyppighed", "tol": 0.1}], "hints": ["Hvad er midten af 0–50?", "Brug kortet \"Middeltal med intervaller\".", "(25 · 8 + 75 · 12 + 125 · 5) ÷ 25"], "sentence": "Kunderne køber i gennemsnit for 69 kr."}, {"text": "En café har talt, hvor meget kunderne køber for.\n\nFind **middeltallet** (gennemsnittet) pr. kunde.", "table": [["Køb i kr", "0–40", "40–80", "80–120"], ["Antal kunder", "6", "10", "4"]], "answer": 56.0, "tol": 0.1, "unit": "kr", "wrong": [{"v": 36.0, "msg": "Du brugte venstre kant (0, 40, 80). Brug midtpunkterne: 20, 60, 100.", "tag": "grupperet_venstre_kant", "tol": 0.1}, {"v": 76.0, "msg": "Du brugte højre kant. Brug midtpunkterne: 20, 60, 100.", "tag": "grupperet_hoejre_kant", "tol": 0.1}, {"v": 6.666667, "msg": "Du tog gennemsnit af antal kunder. Gang hvert midtpunkt med antal først.", "tag": "gennemsnit_af_antal", "tol": 0.05}, {"v": 60, "msg": "Du tog gennemsnit af midtpunkterne. Husk at gange med antal kunder.", "tag": "glemte_hyppighed", "tol": 0.1}], "hints": ["Hvad er midten af 0–40?", "Brug kortet \"Middeltal med intervaller\".", "(20 · 6 + 60 · 10 + 100 · 4) ÷ 20"], "sentence": "Kunderne køber i gennemsnit for 56 kr."}]}, {"id": "lykkehjul", "title": "Lykkehjul i butikken", "skills": ["sandsyn", "pct_antal"], "wef": "analytisk", "cards": ["sandsyn"], "type": "num", "versions": [{"text": "Kunderne må dreje et lykkehjul med 8 lige store felter.\n2 felter giver rabat.\n\nHvad er sandsynligheden for rabat? Svar i **procent**.", "answer": 25.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 0.25, "msg": "Rigtigt som decimaltal! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 2, "msg": "Det er antal felter med rabat. Sandsynlighed = gunstige ÷ mulige.", "tag": "antal_i_stedet_for_procent"}, {"v": 33.333333, "msg": "Du delte med felterne UDEN rabat. Del med alle 8 felter.", "tag": "sandsyn_forkert_naevner", "tol": 0.5}], "hints": ["Hvor mange felter er gode? Hvor mange felter er der i alt?", "Brug kortet \"Sandsynlighed\".", "2 ÷ 8 · 100"], "sentence": "Sandsynligheden for rabat er 25 %."}, {"text": "Kunderne må dreje et lykkehjul med 10 lige store felter.\n3 felter giver rabat.\n\nHvad er sandsynligheden for rabat? Svar i **procent**.", "answer": 30.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 0.3, "msg": "Rigtigt som decimaltal! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 3, "msg": "Det er antal felter med rabat. Sandsynlighed = gunstige ÷ mulige.", "tag": "antal_i_stedet_for_procent"}, {"v": 42.857143, "msg": "Du delte med felterne UDEN rabat. Del med alle 10 felter.", "tag": "sandsyn_forkert_naevner", "tol": 0.5}], "hints": ["Hvor mange felter er gode? Hvor mange felter er der i alt?", "Brug kortet \"Sandsynlighed\".", "3 ÷ 10 · 100"], "sentence": "Sandsynligheden for rabat er 30 %."}]}, {"id": "papkasse-liter", "title": "Papkasse til webshoppen", "skills": ["enheder", "rumfang"], "wef": "analytisk", "cards": ["kasse", "liter", "laengde"], "type": "num", "versions": [{"text": "En papkasse til webshoppen måler\n40 cm × 30 cm × 25 cm.\n\nHvor mange **liter** kan der være i den?", "answer": 30.0, "tol": 0.1, "unit": "L", "wrong": [{"v": 30000, "msg": "Det er cm³. 1 liter = 1.000 cm³. Del med 1.000.", "tag": "enhed_cm3_liter"}, {"v": 95, "msg": "Du lagde målene sammen. Rumfang = l · b · h.", "tag": "lagde_sammen"}, {"v": 300, "msg": "Del med 1.000, ikke med 100.", "tag": "enhed_forkert_faktor"}, {"v": 3, "msg": "Del med 1.000, ikke med 10.000.", "tag": "enhed_forkert_faktor"}], "hints": ["Find først rumfanget i cm³.", "Brug kortet \"Kasse\" og derefter \"Liter og rumfang\".", "40 · 30 · 25 = 30.000 cm³ → ÷ 1.000"], "sentence": "Der kan være 30 liter i kassen."}, {"text": "En papkasse til webshoppen måler\n60 cm × 40 cm × 25 cm.\n\nHvor mange **liter** kan der være i den?", "answer": 60.0, "tol": 0.1, "unit": "L", "wrong": [{"v": 60000, "msg": "Det er cm³. 1 liter = 1.000 cm³. Del med 1.000.", "tag": "enhed_cm3_liter"}, {"v": 125, "msg": "Du lagde målene sammen. Rumfang = l · b · h.", "tag": "lagde_sammen"}, {"v": 600, "msg": "Del med 1.000, ikke med 100.", "tag": "enhed_forkert_faktor"}, {"v": 6, "msg": "Del med 1.000, ikke med 10.000.", "tag": "enhed_forkert_faktor"}], "hints": ["Find først rumfanget i cm³.", "Brug kortet \"Kasse\" og derefter \"Liter og rumfang\".", "60 · 40 · 25 = 60.000 cm³ → ÷ 1.000"], "sentence": "Der kan være 60 liter i kassen."}]}, {"id": "gulv-pris", "title": "Nyt gulv i butikken", "skills": ["areal"], "wef": "argument", "cards": ["rekt"], "type": "num", "versions": [{"text": "Butikken skal have nyt gulv.\nGulvet er 8 m × 5,5 m.\nGulvet koster 249 kr pr. m².\n\nHvad koster det nye gulv?", "answer": 10956.0, "tol": 1, "unit": "kr", "wrong": [{"v": 6723.0, "msg": "Du brugte omkredsen. Gulv er areal: længde · bredde.", "tag": "omkreds_areal", "tol": 1}, {"v": 3361.5, "msg": "Du lagde 8 og 5,5 sammen. Areal = længde · bredde.", "tag": "lagde_sammen", "tol": 1}, {"v": 44, "msg": "Det er arealet. Gang med prisen pr. m².", "tag": "glemte_sidste_trin"}], "hints": ["Hvor mange m² er gulvet?", "Brug kortet \"Rektangel og kvadrat\".", "8 · 5,5 = 44 m² → 44 · 249"], "sentence": "Det nye gulv koster 10.956 kr."}, {"text": "Butikken skal have nyt gulv.\nGulvet er 6 m × 4,5 m.\nGulvet koster 199 kr pr. m².\n\nHvad koster det nye gulv?", "answer": 5373.0, "tol": 1, "unit": "kr", "wrong": [{"v": 4179.0, "msg": "Du brugte omkredsen. Gulv er areal: længde · bredde.", "tag": "omkreds_areal", "tol": 1}, {"v": 2089.5, "msg": "Du lagde 6 og 4,5 sammen. Areal = længde · bredde.", "tag": "lagde_sammen", "tol": 1}, {"v": 27, "msg": "Det er arealet. Gang med prisen pr. m².", "tag": "glemte_sidste_trin"}], "hints": ["Hvor mange m² er gulvet?", "Brug kortet \"Rektangel og kvadrat\".", "6 · 4,5 = 27 m² → 27 · 199"], "sentence": "Det nye gulv koster 5.373 kr."}]}, {"id": "excel-dansk", "title": "Dansk Excel", "skills": ["excel"], "wef": "tekno", "cards": ["excel-fkt", "excel-formler"], "type": "choice", "versions": [{"text": "Priser står i A2:A6. Antal solgt står i B2:B6.\n\nHvilken formel giver den samlede omsætning i **dansk** Excel?", "choices": ["=SUMPRODUCT(A2:A6,B2:B6)", "=SUMPRODUKT(A2:A6;B2:B6)", "=SUM(A2:A6)*SUM(B2:B6)", "=SUMPRODUKT(A2:A6,B2:B6)"], "answer": 1, "wrong": [{"v": 0, "msg": "Det er engelsk Excel. Dansk: SUMPRODUKT og semikolon.", "tag": "excel_engelsk"}, {"v": 2, "msg": "Det ganger alle priser med alle antal. Hver pris skal ganges med sit eget antal.", "tag": "excel_sum_gange_sum"}, {"v": 3, "msg": "Næsten! Dansk Excel bruger semikolon ; mellem områderne.", "tag": "excel_komma"}], "hints": ["Hver pris skal ganges med sit eget antal. Så lægges det sammen.", "Brug kortet \"Dansk Excel\".", "SUMPRODUKT ganger par og lægger sammen. Dansk Excel bruger ;"], "sentence": "=SUMPRODUKT(A2:A6;B2:B6)"}, {"text": "Du vil regne 10 · tan(42°) i **dansk** Excel.\n\nHvilken formel er rigtig?", "choices": ["=10*TAN(42)", "=10*TAN(RADIANER(42))", "=10*TAN(GRADER(42))", "=10·tan(42°)"], "answer": 1, "wrong": [{"v": 0, "msg": "Excel regner i radianer. Brug RADIANER(42).", "tag": "excel_radianer"}, {"v": 2, "msg": "GRADER laver radianer om til grader. Du skal den anden vej: RADIANER.", "tag": "excel_grader"}, {"v": 3, "msg": "Excel bruger * for gange, og man skriver ikke °.", "tag": "excel_syntaks"}], "hints": ["Hvilken enhed bruger Excel for vinkler?", "Brug kortet \"Excel: formler til prøven\".", "Excel vil have radianer: TAN(RADIANER(42))"], "sentence": "=10*TAN(RADIANER(42)) giver 9,0."}]}, {"id": "ai-laan", "title": "Tjek AI'ens lån", "skills": ["rente", "faktor"], "wef": "kritisk_ai", "cards": ["rentesrente"], "type": "num", "versions": [{"text": "En AI skriver:\n\"Lån 20.000 kr til butikken med 5 % rente om året. Efter 3 år skylder du 23.000 kr.\"\n\nHvad skylder du **rigtigt** efter 3 år (renters rente)?", "answer": 23152.5, "tol": 1, "unit": "kr", "wrong": [{"v": 23000, "msg": "Det er AI'ens svar. Den glemte rente af renten.", "tag": "renter_simpel"}, {"v": 3152.5, "msg": "Det er kun renterne. Opgaven spørger om hele beløbet.", "tag": "svarede_renter", "tol": 1}], "hints": ["Bliver renten regnet af 20.000 kr hvert år? Eller af det nye beløb?", "Brug kortet \"Renters rente\".", "20.000 · 1,05³"], "sentence": "Jeg skylder 23.152,50 kr. AI'en glemte renters rente."}, {"text": "En AI skriver:\n\"Lån 10.000 kr til butikken med 4 % rente om året. Efter 5 år skylder du 12.000 kr.\"\n\nHvad skylder du **rigtigt** efter 5 år (renters rente)?", "answer": 12166.529024, "tol": 1, "unit": "kr", "wrong": [{"v": 12000, "msg": "Det er AI'ens svar. Den glemte rente af renten.", "tag": "renter_simpel"}, {"v": 2166.529024, "msg": "Det er kun renterne. Opgaven spørger om hele beløbet.", "tag": "svarede_renter", "tol": 1}], "hints": ["Bliver renten regnet af 10.000 kr hvert år? Eller af det nye beløb?", "Brug kortet \"Renters rente\".", "10.000 · 1,04⁵"], "sentence": "Jeg skylder 12.166,53 kr. AI'en glemte renters rente."}]}], "skills": {"pct_antal": ["Procent eller antal?", "Læs spørgsmålet: Vil de have procent eller et antal?", "pct-hvor"], "pct_baglaens": ["Baglæns procent (prisen før)", "Prisen før = ny pris ÷ faktor (fx ÷ 1,12).", "baglaens"], "moms": ["Moms", "Uden moms = med moms ÷ 1,25.", "moms"], "pct_aendring": ["Procentvis ændring", "Ændring ÷ GAMMEL værdi · 100.", "pct-aendr"], "faktor": ["Flere %-ændringer efter hinanden", "Gang med én faktor ad gangen.", "faktor"], "graf": ["Læse tabel og graf (hældning)", "x er tallene i tabellen – ikke række 1, 2, 3.", "haeldning"], "ligning_tekst": ["Lave en ligning ud fra tekst", "Kald det ukendte x. Skriv hver sætning som et regnestykke.", "ligning"], "ulighed": ["Uligheder (højst / mindst)", "\"Højst\" betyder ≤. Rund ned til et helt tal.", "ulighed"], "break_even": ["Hvornår koster det det samme?", "Sæt de to forskrifter lig hinanden.", "skaering"], "trig_side": ["Trekant: find en side med tan", "tan = modstående ÷ hosliggende. Hosliggende er aldrig den lange side.", "tan-side"], "trig_vinkel": ["Trekant: find en vinkel", "Brug tan⁻¹, sin⁻¹ eller cos⁻¹ – i grader.", "find-vinkel"], "trig_graense": ["Vinkler og længder der giver mening", "Spids vinkel: under 90°. En længde er aldrig minus.", "sider"], "grupperet": ["Gennemsnit med intervaller", "Brug midtpunktet i hvert interval.", "grupperet"], "sandsyn": ["Sandsynlighed", "Gunstige ÷ mulige.", "sandsyn"], "enheder": ["Enheder (cm³ → liter)", "1 liter = 1.000 cm³.", "liter"], "rumfang": ["Rumfang", "Kasse: l · b · h.", "kasse"], "areal": ["Areal og pris pr. m²", "Areal = længde · bredde. Omkreds er noget andet.", "rekt"], "excel": ["Dansk Excel", "Dansk: SUMPRODUKT, RADIANER og semikolon ;", "excel-formler"], "rente": ["Renters rente", "K · (1 + r)ⁿ.", "rentesrente"]}, "wef": {"analytisk": "Analytisk tænkning", "kritisk_ai": "Find fejlen i et AI-svar", "argument": "Argumentér for en beslutning med tal", "tekno": "Teknologisk kunnen (regneark)", "kritisk": "Kritisk tænkning (tjek om det giver mening)"}, "cardTitles": {"point": "Point-skabelonen (5 linjer)", "undersoeg": "“Undersøg …”-opgaver", "tjek": "Tjek dit svar (30 sek.)", "rr": "Regnerækkefølge", "broek": "Brøker", "omregn": "Brøk, decimaltal og procent", "pct-af": "Find procentdelen (p % af et tal)", "pct-hvor": "Hvor mange procent? (procent af antal)", "pct-aendr": "Procentvis ændring (stigning/fald)", "faktor": "Fremskrivningsfaktor (op og ned med %)", "baglaens": "Baglæns procent (prisen før)", "moms": "Moms (25 %)", "rabat": "Rabat og tilbud", "promille": "Promille (‰)", "rente": "Rente (én termin)", "rentesrente": "Renters rente (kapitalfremskrivning)", "valuta": "Valuta (kurs)", "potens": "Potenser", "rod": "Kvadratrod", "storetal": "Store og små tal (10-potenser)", "afrund": "Afrunding og overslag", "forhold": "Forhold (a : b)", "reduc": "Reducering", "ligning": "Ligninger", "ulighed": "Uligheder", "formler": "Brug en formel (indsæt og isolér)", "to-ligninger": "To ligninger med to ubekendte", "koord": "Koordinatsystem", "linear": "Lineær funktion y = ax + b", "haeldning": "Hældning ud fra to punkter", "skaering": "Skæring mellem to linjer (break-even)", "tabel": "Tabel → graf → forskrift", "propor": "Ligefrem proportionalitet", "omvendt": "Omvendt proportionalitet", "eksp": "Eksponentiel funktion (vækst med %)", "parabel": "Andengradsfunktion (parabel)", "vinkeltyper": "Vinkeltyper", "nabovinkel": "Nabovinkler og topvinkler", "vinkelsum": "Vinkelsum i trekant og firkant", "pyth": "Pythagoras", "sider": "Navne på siderne (start ved vinklen)", "trig": "sin, cos og tan", "tan-side": "Find en side med tan (vinkel i hver ende)", "find-vinkel": "Find en vinkel (tan⁻¹, sin⁻¹, cos⁻¹)", "ensvinklet": "Ensvinklede trekanter", "maalestok": "Målestok (1 : 50)", "skalering": "Skalering: k, k² og k³", "rekt": "Rektangel og kvadrat", "trekant": "Trekant (areal)", "parallelogram": "Parallelogram", "trapez": "Trapez", "cirkel": "Cirkel", "udsnit": "Cirkeludsnit og cirkelbue", "kasse": "Kasse (rumfang og overflade)", "prisme": "Prisme", "cylinder": "Cylinder", "pyramide": "Pyramide", "kegle": "Kegle", "kugle": "Kugle", "laengde": "Enheder: længde, areal, rumfang", "liter": "Liter og rumfang", "tid": "Tid, fart og km/t ↔ m/s", "massefylde": "Massefylde", "afstand": "Afstand mellem to punkter", "hyppighed": "Hyppighed og frekvens", "middeltal": "Middeltal (gennemsnit)", "grupperet": "Middeltal med intervaller (midtpunkter)", "median": "Median", "typetal": "Typetal og variationsbredde", "kvartil": "Kvartiler og boksplot", "sumkurve": "Sumkurve (summeret frekvens)", "sammenlign": "Sammenlign to grupper (argumenter)", "sandsyn": "Sandsynlighed", "to-haendelser": "To ting på én gang (tælletræ)", "kombinatorik": "Kombinatorik (hvor mange muligheder?)", "excel-fkt": "Dansk Excel: de vigtigste funktioner", "excel-formler": "Excel: formler til prøven"}, "calcCards": {"calc-pct": ["pct-af", "pct-hvor", "pct-aendr", "faktor", "baglaens", "moms", "rabat"], "calc-rente": ["rente", "rentesrente"], "calc-linje": ["linear", "haeldning"], "calc-pyth": ["pyth"], "calc-trig": ["trig", "tan-side"], "calc-vinkel": ["find-vinkel"], "calc-rum": ["kasse", "prisme", "cylinder", "pyramide", "kegle", "kugle"], "calc-stat": ["middeltal", "grupperet", "median", "typetal", "kvartil"]}};</script>
+<script>window.TRAIN={"version": "2.0 (2026-10-22)", "tasks": [{"id": "sko-nike", "title": "Sko i butikken", "skills": ["pct_antal"], "wef": "analytisk", "cards": ["pct-hvor"], "type": "num", "versions": [{"text": "Din skobutik solgte 40 par sko i weekenden.\n12 par var Nike.\n\nHvor mange **procent** af skoene var Nike?", "answer": 30.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 12, "msg": "Du skrev antallet af par. Opgaven spørger om procent.", "tag": "antal_i_stedet_for_procent"}, {"v": 0.3, "msg": "Tæt på! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 333.333333, "msg": "Du byttede om. Del ÷ hele: 12 ÷ 40.", "tag": "byttede_del_hele", "tol": 0.5}], "hints": ["Spørger opgaven om et antal eller om procent?", "Brug kortet \"Hvor mange procent?\".", "Del ÷ hele · 100 = 12 ÷ 40 · 100"], "sentence": "Nike var 30 % af skoene."}, {"text": "Din skobutik solgte 36 par sko i weekenden.\n9 par var Adidas.\n\nHvor mange **procent** af skoene var Adidas?", "answer": 25.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 9, "msg": "Du skrev antallet af par. Opgaven spørger om procent.", "tag": "antal_i_stedet_for_procent"}, {"v": 0.25, "msg": "Tæt på! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 400, "msg": "Du byttede om. Del ÷ hele: 9 ÷ 36.", "tag": "byttede_del_hele", "tol": 0.5}], "hints": ["Spørger opgaven om et antal eller om procent?", "Brug kortet \"Hvor mange procent?\".", "Del ÷ hele · 100 = 9 ÷ 36 · 100"], "sentence": "Adidas var 25 % af skoene."}]}, {"id": "hoodie-foer", "title": "Prisen før", "skills": ["pct_baglaens"], "wef": "kritisk", "cards": ["baglaens", "faktor"], "type": "num", "versions": [{"text": "En hættetrøje koster nu 560 kr.\nPrisen er steget 12 %.\n\nHvad kostede den **før**?", "answer": 500.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 492.8, "msg": "Du trak 12 % fra 560. Men de 12 % er regnet af den GAMLE pris. Regn baglæns.", "tag": "baglaens_traekker_fra"}, {"v": 627.2, "msg": "Du lagde 12 % til igen. Prisen før er MINDRE end nu.", "tag": "baglaens_ganger"}], "hints": ["Er prisen før større eller mindre end 560 kr?", "Brug kortet \"Baglæns procent\".", "Før = ny ÷ 1,12 = 560 ÷ 1,12"], "sentence": "Hættetrøjen kostede 500 kr før."}, {"text": "En hættetrøje koster nu 448 kr.\nPrisen er steget 12 %.\n\nHvad kostede den **før**?", "answer": 400.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 394.24, "msg": "Du trak 12 % fra 448. Men de 12 % er regnet af den GAMLE pris. Regn baglæns.", "tag": "baglaens_traekker_fra"}, {"v": 501.76, "msg": "Du lagde 12 % til igen. Prisen før er MINDRE end nu.", "tag": "baglaens_ganger"}], "hints": ["Er prisen før større eller mindre end 448 kr?", "Brug kortet \"Baglæns procent\".", "Før = ny ÷ 1,12 = 448 ÷ 1,12"], "sentence": "Hættetrøjen kostede 400 kr før."}]}, {"id": "jakke-moms", "title": "Pris uden moms", "skills": ["moms", "pct_baglaens"], "wef": "analytisk", "cards": ["moms"], "type": "num", "versions": [{"text": "I din webshop koster en jakke 1.000 kr **med** moms.\n\nHvad er prisen **uden** moms?", "answer": 800.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 750, "msg": "Du trak 25 % fra. Momsen er lagt oven på prisen uden moms. Del med 1,25.", "tag": "moms_minus_25"}, {"v": 1250, "msg": "Du lagde moms til. Prisen uden moms er mindre.", "tag": "moms_lagt_til"}, {"v": 200, "msg": "Det er selve momsen. Opgaven spørger om prisen uden moms.", "tag": "svarede_momsen"}], "hints": ["Moms er 25 % OVENI prisen uden moms.", "Brug kortet \"Moms (25 %)\".", "Uden moms = 1.000 ÷ 1,25"], "sentence": "Jakken koster 800 kr uden moms."}, {"text": "I din webshop koster en jakke 1.250 kr **med** moms.\n\nHvad er prisen **uden** moms?", "answer": 1000.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 937.5, "msg": "Du trak 25 % fra. Momsen er lagt oven på prisen uden moms. Del med 1,25.", "tag": "moms_minus_25"}, {"v": 1562.5, "msg": "Du lagde moms til. Prisen uden moms er mindre.", "tag": "moms_lagt_til"}, {"v": 250, "msg": "Det er selve momsen. Opgaven spørger om prisen uden moms.", "tag": "svarede_momsen"}], "hints": ["Moms er 25 % OVENI prisen uden moms.", "Brug kortet \"Moms (25 %)\".", "Uden moms = 1.250 ÷ 1,25"], "sentence": "Jakken koster 1.000 kr uden moms."}]}, {"id": "skate-fald", "title": "Rabat i procent", "skills": ["pct_aendring", "pct_antal"], "wef": "analytisk", "cards": ["pct-aendr", "rabat"], "type": "num", "versions": [{"text": "Et skateboard kostede 500 kr.\nNu koster det 400 kr.\n\nHvor mange **procent** er prisen faldet?", "answer": 20.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 100, "msg": "Det er faldet i kroner. Opgaven vil have procent.", "tag": "kr_i_stedet_for_procent"}, {"v": 25, "msg": "Du delte med den NYE pris. Del med den gamle pris (500).", "tag": "delte_med_ny"}, {"v": 80, "msg": "80 % er det, der er tilbage. Hvor meget er faldet?", "tag": "tilbage_i_stedet_for_fald"}], "hints": ["Find først faldet i kroner.", "Brug kortet \"Procentvis ændring\".", "(500 − 400) ÷ 500 · 100"], "sentence": "Prisen er faldet 20 %."}, {"text": "Et skateboard kostede 800 kr.\nNu koster det 680 kr.\n\nHvor mange **procent** er prisen faldet?", "answer": 15.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 120, "msg": "Det er faldet i kroner. Opgaven vil have procent.", "tag": "kr_i_stedet_for_procent"}, {"v": 17.647059, "msg": "Du delte med den NYE pris. Del med den gamle pris (800).", "tag": "delte_med_ny", "tol": 0.3}, {"v": 85, "msg": "85 % er det, der er tilbage. Hvor meget er faldet?", "tag": "tilbage_i_stedet_for_fald"}], "hints": ["Find først faldet i kroner.", "Brug kortet \"Procentvis ændring\".", "(800 − 680) ÷ 800 · 100"], "sentence": "Prisen er faldet 15 %."}]}, {"id": "kasket-op-ned", "title": "Op 10 % og ned 10 %", "skills": ["faktor"], "wef": "kritisk", "cards": ["faktor"], "type": "num", "versions": [{"text": "En kasket koster 500 kr.\nPrisen stiger 10 %. Bagefter falder den 10 %.\n\nHvad koster kasketten **nu**?", "answer": 495.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 500, "msg": "Mange tror det! Men de 10 % ned er regnet af en højere pris. Regn ét trin ad gangen.", "tag": "procent_op_ned_ophaever"}], "hints": ["Regn først prisen efter stigningen.", "Brug kortet \"Fremskrivningsfaktor\".", "500 · 1,10 · 0,90"], "sentence": "Kasketten koster nu 495 kr. Det er 5 kr mindre end før."}, {"text": "En kasket koster 800 kr.\nPrisen stiger 20 %. Bagefter falder den 20 %.\n\nHvad koster kasketten **nu**?", "answer": 768.0, "tol": 0.5, "unit": "kr", "wrong": [{"v": 800, "msg": "Mange tror det! Men de 20 % ned er regnet af en højere pris. Regn ét trin ad gangen.", "tag": "procent_op_ned_ophaever"}], "hints": ["Regn først prisen efter stigningen.", "Brug kortet \"Fremskrivningsfaktor\".", "800 · 1,20 · 0,80"], "sentence": "Kasketten koster nu 768 kr. Det er 32 kr mindre end før."}]}, {"id": "kaffe-haeldning", "title": "Overskud pr. kop", "skills": ["graf"], "wef": "analytisk", "cards": ["haeldning", "tabel", "linear"], "type": "num", "versions": [{"text": "Tabellen viser overskuddet i en kaffebar.\n\nHvor mange kr stiger overskuddet for **hver ekstra kop**?", "table": [["Solgte kopper (x)", "50", "100", "150", "200"], ["Overskud i kr (y)", "100", "300", "500", "700"]], "answer": 4.0, "tol": 0.01, "unit": "kr pr. kop", "wrong": [{"v": 200, "msg": "Du brugte række 1, 2, 3 som x. x er antal kopper: 50, 100, 150 …", "tag": "graf_raekkenumre"}, {"v": 0.25, "msg": "Du byttede om. Hældning = ændring i y ÷ ændring i x.", "tag": "haeldning_byttet", "tol": 0.005}, {"v": 2, "msg": "Overskud ÷ kopper virker kun, hvis grafen går gennem (0, 0). Brug to punkter.", "tag": "haeldning_y_div_x"}], "hints": ["Hvad er x, og hvad er y? x står i øverste række.", "Brug kortet \"Hældning ud fra to punkter\".", "a = (300 − 100) ÷ (100 − 50)"], "sentence": "Overskuddet stiger 4 kr for hver ekstra kop."}, {"text": "Tabellen viser overskuddet i en juicebar.\n\nHvor mange kr stiger overskuddet for **hver ekstra juice**?", "table": [["Solgte juice (x)", "20", "40", "60", "80"], ["Overskud i kr (y)", "−60", "0", "60", "120"]], "answer": 3.0, "tol": 0.01, "unit": "kr pr. juice", "wrong": [{"v": 60, "msg": "Du brugte række 1, 2, 3 som x. x er antal juice: 20, 40, 60 …", "tag": "graf_raekkenumre"}, {"v": 0.333333, "msg": "Du byttede om. Hældning = ændring i y ÷ ændring i x.", "tag": "haeldning_byttet", "tol": 0.01}, {"v": -3, "msg": "Overskud ÷ antal virker kun, hvis grafen går gennem (0, 0). Brug to punkter.", "tag": "haeldning_y_div_x"}], "hints": ["Hvad er x, og hvad er y? x står i øverste række.", "Brug kortet \"Hældning ud fra to punkter\".", "a = (0 − (−60)) ÷ (40 − 20)"], "sentence": "Overskuddet stiger 3 kr for hver ekstra juice."}]}, {"id": "aktier", "title": "Aktier i webshoppen", "skills": ["ligning_tekst"], "wef": "analytisk", "cards": ["ligning", "formler"], "type": "num", "versions": [{"text": "Emma og Noah starter en webshop.\nEmma har 3 gange så mange aktier som Noah.\nTilsammen har de 120 aktier.\n\nHvor mange aktier har **Noah**?", "answer": 30.0, "tol": 0, "unit": "aktier", "wrong": [{"v": 40, "msg": "Du delte med 3. Men der er 4 dele i alt: Noah = x og Emma = 3x.", "tag": "ligning_forkert_opstilling"}, {"v": 90, "msg": "Det er Emmas aktier. Opgaven spørger om Noah.", "tag": "svarede_forkert_person"}], "hints": ["Kald Noahs aktier for x. Hvor mange har Emma så?", "Brug kortet \"Ligninger\".", "x + 3x = 120 → 4x = 120"], "sentence": "Noah har 30 aktier."}, {"text": "Emma og Noah starter en webshop.\nEmma har 2 gange så mange aktier som Noah.\nTilsammen har de 96 aktier.\n\nHvor mange aktier har **Noah**?", "answer": 32.0, "tol": 0, "unit": "aktier", "wrong": [{"v": 48, "msg": "Du delte med 2. Men der er 3 dele i alt: Noah = x og Emma = 2x.", "tag": "ligning_forkert_opstilling"}, {"v": 64, "msg": "Det er Emmas aktier. Opgaven spørger om Noah.", "tag": "svarede_forkert_person"}], "hints": ["Kald Noahs aktier for x. Hvor mange har Emma så?", "Brug kortet \"Ligninger\".", "x + 2x = 96 → 3x = 96"], "sentence": "Noah har 32 aktier."}]}, {"id": "jubilaeum", "title": "Butikkens alder", "skills": ["ligning_tekst"], "wef": "analytisk", "cards": ["ligning"], "type": "num", "versions": [{"text": "En butik holder fødselsdag.\nOm 6 år er butikken dobbelt så gammel, som den var for 6 år siden.\n\nHvor gammel er butikken **nu**?", "answer": 18, "tol": 0, "unit": "år", "wrong": [{"v": 12, "msg": "Husk at gange begge tal i parentesen med 2: 2 · (x − 6) = 2x − 12.", "tag": "parentes_gange"}, {"v": 24, "msg": "Det er alderen om 6 år. Opgaven spørger om alderen nu.", "tag": "svarede_forkert_tidspunkt"}], "hints": ["Kald alderen nu for x. Hvad er alderen om 6 år? Og for 6 år siden?", "Brug kortet \"Ligninger\".", "x + 6 = 2 · (x − 6)"], "sentence": "Butikken er 18 år nu. Tjek: 24 = 2 · 12."}, {"text": "En butik holder fødselsdag.\nOm 4 år er butikken dobbelt så gammel, som den var for 4 år siden.\n\nHvor gammel er butikken **nu**?", "answer": 12, "tol": 0, "unit": "år", "wrong": [{"v": 8, "msg": "Husk at gange begge tal i parentesen med 2: 2 · (x − 4) = 2x − 8.", "tag": "parentes_gange"}, {"v": 16, "msg": "Det er alderen om 4 år. Opgaven spørger om alderen nu.", "tag": "svarede_forkert_tidspunkt"}], "hints": ["Kald alderen nu for x. Hvad er alderen om 4 år? Og for 4 år siden?", "Brug kortet \"Ligninger\".", "x + 4 = 2 · (x − 4)"], "sentence": "Butikken er 12 år nu. Tjek: 16 = 2 · 8."}]}, {"id": "stand-budget", "title": "Budget til en salgsstand", "skills": ["ulighed"], "wef": "argument", "cards": ["ulighed"], "type": "num", "versions": [{"text": "Du har 1.000 kr til en salgsstand.\nLeje af standen koster 250 kr.\nÉn kasse sodavand koster 35 kr.\n\nHvor mange kasser kan du **højst** købe?", "answer": 21, "tol": 0, "unit": "kasser", "wrong": [{"v": 22, "msg": "Med 22 kasser bruger du 1.020 kr. Det er over budgettet. Rund NED.", "tag": "ulighed_rundede_op"}, {"v": 21.428571, "msg": "Du kan ikke købe en del af en kasse. Svar med et helt tal.", "tag": "ulighed_ikke_heltal", "tol": 0.05}, {"v": 28, "msg": "Du glemte lejen på 250 kr.", "tag": "glemte_fast_udgift"}, {"v": 28.571429, "msg": "Du glemte lejen på 250 kr.", "tag": "glemte_fast_udgift", "tol": 0.01}], "hints": ["\"Højst\" betyder: du må ikke bruge mere end 1.000 kr.", "Brug kortet \"Uligheder\".", "250 + 35 · x ≤ 1.000"], "sentence": "Jeg kan højst købe 21 kasser (250 + 21 · 35 = 985 kr)."}, {"text": "Du har 800 kr til en salgsstand.\nLeje af standen koster 200 kr.\nÉn kasse juice koster 45 kr.\n\nHvor mange kasser kan du **højst** købe?", "answer": 13, "tol": 0, "unit": "kasser", "wrong": [{"v": 14, "msg": "Med 14 kasser bruger du 830 kr. Det er over budgettet. Rund NED.", "tag": "ulighed_rundede_op"}, {"v": 13.333333, "msg": "Du kan ikke købe en del af en kasse. Svar med et helt tal.", "tag": "ulighed_ikke_heltal", "tol": 0.05}, {"v": 17, "msg": "Du glemte lejen på 200 kr.", "tag": "glemte_fast_udgift"}, {"v": 17.777778, "msg": "Du glemte lejen på 200 kr.", "tag": "glemte_fast_udgift", "tol": 0.01}], "hints": ["\"Højst\" betyder: du må ikke bruge mere end 800 kr.", "Brug kortet \"Uligheder\".", "200 + 45 · x ≤ 800"], "sentence": "Jeg kan højst købe 13 kasser (200 + 13 · 45 = 785 kr)."}]}, {"id": "leverandoer", "title": "Vælg leverandør", "skills": ["break_even", "ligning_tekst"], "wef": "argument", "cards": ["skaering", "linear"], "type": "num", "versions": [{"text": "Leverandør A: 400 kr fast + 12 kr pr. stk.\nLeverandør B: 20 kr pr. stk.\n\nVed hvor mange stk. koster de **det samme**?", "answer": 50.0, "tol": 0, "unit": "stk.", "wrong": [{"v": 20, "msg": "Husk at A også koster 12 kr pr. stk.", "tag": "glemte_ene_led"}, {"v": 33.333333, "msg": "Husk at B koster 20 kr pr. stk.", "tag": "glemte_ene_led", "tol": 0.05}, {"v": 1000, "msg": "Det er prisen. Opgaven spørger om antal stk.", "tag": "svarede_pris"}], "hints": ["Skriv en pris-forskrift for hver leverandør.", "Brug kortet \"Skæring mellem to linjer\".", "400 + 12x = 20x → 400 = 8x"], "sentence": "Ved 50 stk. koster begge 1.000 kr. Køber du flere end 50, er A billigst."}, {"text": "Leverandør A: 270 kr fast + 15 kr pr. stk.\nLeverandør B: 24 kr pr. stk.\n\nVed hvor mange stk. koster de **det samme**?", "answer": 30.0, "tol": 0, "unit": "stk.", "wrong": [{"v": 11.25, "msg": "Husk at A også koster 15 kr pr. stk.", "tag": "glemte_ene_led", "tol": 0.05}, {"v": 18, "msg": "Husk at B koster 24 kr pr. stk.", "tag": "glemte_ene_led"}, {"v": 720, "msg": "Det er prisen. Opgaven spørger om antal stk.", "tag": "svarede_pris"}], "hints": ["Skriv en pris-forskrift for hver leverandør.", "Brug kortet \"Skæring mellem to linjer\".", "270 + 15x = 24x → 270 = 9x"], "sentence": "Ved 30 stk. koster begge 720 kr. Køber du flere end 30, er A billigst."}]}, {"id": "baand-vandret", "title": "Transportbånd: vandret", "skills": ["trig_side"], "wef": "analytisk", "cards": ["tan-side", "sider", "trig"], "type": "num", "versions": [{"text": "På lageret løfter et transportbånd kasser 1,5 m op.\nBåndet hælder 25°.\n\nHvor langt er der **vandret** fra start til slut?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">25°<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">vandret = ?<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">1,5 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\">båndet<\/text>\n<\/svg>", "answer": 3.21676, "tol": 0.05, "unit": "m", "wrong": [{"v": 0.699461, "msg": "Du gangede med tan. Vandret er hosliggende: hos = mod ÷ tan(v).", "tag": "tan_gange_dividere", "tol": 0.02}, {"v": 3.549302, "msg": "Det er båndets længde (hypotenusen). Vandret er hosliggende.", "tag": "hosliggende_hypotenuse", "tol": 0.02}, {"v": -11.233733, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.05}], "hints": ["Hvilken side er 1,5 m? Hvilken side skal du finde?", "Brug kortet \"Find en side med tan\".", "vandret = 1,5 ÷ tan(25°)"], "sentence": "Der er 3,22 m vandret."}, {"text": "På lageret løfter et transportbånd kasser 2 m op.\nBåndet hælder 30°.\n\nHvor langt er der **vandret** fra start til slut?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">30°<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">vandret = ?<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">2 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\">båndet<\/text>\n<\/svg>", "answer": 3.464102, "tol": 0.05, "unit": "m", "wrong": [{"v": 1.154701, "msg": "Du gangede med tan. Vandret er hosliggende: hos = mod ÷ tan(v).", "tag": "tan_gange_dividere", "tol": 0.02}, {"v": 4.0, "msg": "Det er båndets længde (hypotenusen). Vandret er hosliggende.", "tag": "hosliggende_hypotenuse", "tol": 0.02}, {"v": -0.31224, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.05}], "hints": ["Hvilken side er 2 m? Hvilken side skal du finde?", "Brug kortet \"Find en side med tan\".", "vandret = 2 ÷ tan(30°)"], "sentence": "Der er 3,46 m vandret."}]}, {"id": "baand-vinkel", "title": "Transportbånd: vinklen", "skills": ["trig_vinkel"], "wef": "analytisk", "cards": ["find-vinkel", "sider"], "type": "num", "versions": [{"text": "Et transportbånd løfter kasser 1,2 m op.\nDen vandrette afstand er 4 m.\n\nHvor mange **grader** hælder båndet?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">v = ?<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">4 m<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">1,2 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\"><\/text>\n<\/svg>", "answer": 16.699244, "tol": 0.1, "unit": "°", "wrong": [{"v": 17.457603, "msg": "Du brugte sin. 4 m er vandret (hosliggende), ikke hypotenusen. Brug tan⁻¹.", "tag": "hosliggende_hypotenuse", "tol": 0.1}, {"v": 73.300756, "msg": "Det er vinklen øverst. Opgaven spørger om vinklen ved jorden.", "tag": "forkert_vinkel", "tol": 0.1}, {"v": 0.291457, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.01}], "hints": ["Du kender modstående og hosliggende. Hvilken af sin, cos, tan bruger de to?", "Brug kortet \"Find en vinkel\".", "v = tan⁻¹(1,2 ÷ 4)"], "sentence": "Båndet hælder 16,7°."}, {"text": "Et transportbånd løfter kasser 1,5 m op.\nDen vandrette afstand er 2,5 m.\n\nHvor mange **grader** hælder båndet?", "fig": "<svg viewBox=\"0 0 400 190\" width=\"400\" height=\"190\" role=\"img\" aria-label=\"Retvinklet trekant\">\n<polygon points=\"30,160 320,160 320,40\" fill=\"#eef4ff\" stroke=\"#111\" stroke-width=\"3\"/>\n<rect x=\"304\" y=\"144\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#111\" stroke-width=\"2\"/>\n<path d=\"M80,160 A50,50 0 0 0 76,141\" fill=\"none\" stroke=\"#c2410c\" stroke-width=\"3\"/>\n<text x=\"88\" y=\"152\" class=\"tb\" fill=\"#c2410c\" style=\"fill:#c2410c\">v = ?<\/text>\n<text x=\"175\" y=\"184\" text-anchor=\"middle\" class=\"tb\">2,5 m<\/text>\n<text x=\"330\" y=\"105\" class=\"tb\">1,5 m<\/text>\n<text x=\"160\" y=\"88\" text-anchor=\"middle\" class=\"tb\" transform=\"rotate(-22 160 88)\"><\/text>\n<\/svg>", "answer": 30.963757, "tol": 0.1, "unit": "°", "wrong": [{"v": 36.869898, "msg": "Du brugte sin. 2,5 m er vandret (hosliggende), ikke hypotenusen. Brug tan⁻¹.", "tag": "hosliggende_hypotenuse", "tol": 0.1}, {"v": 59.036243, "msg": "Det er vinklen øverst. Opgaven spørger om vinklen ved jorden.", "tag": "forkert_vinkel", "tol": 0.1}, {"v": 0.54042, "msg": "Lommeregneren står i radianer. Skift til grader (DEG).", "tag": "radianer", "tol": 0.01}], "hints": ["Du kender modstående og hosliggende. Hvilken af sin, cos, tan bruger de to?", "Brug kortet \"Find en vinkel\".", "v = tan⁻¹(1,5 ÷ 2,5)"], "sentence": "Båndet hælder 31,0°."}]}, {"id": "ai-vinkel", "title": "Find fejlen i AI-svaret", "skills": ["trig_graense"], "wef": "kritisk_ai", "cards": ["sider", "vinkelsum"], "type": "choice", "versions": [{"text": "En AI skriver:\n\"Transportbåndet kan hælde 95°. Så bliver det vandrette stykke kort.\"\n\nHvad er **fejlen**?", "choices": ["95° er for meget. En spids vinkel i en retvinklet trekant er under 90°.", "Der er ingen fejl.", "Vinklen skal være over 100°.", "Det vandrette stykke bliver minus, og det er fint."], "answer": 0, "wrong": [{"v": 1, "msg": "Tjek: 90° + 95° = 185°. Der er kun 180° i en trekant.", "tag": "accepterede_ai_fejl"}, {"v": 2, "msg": "Over 90° kan ikke være i en retvinklet trekant.", "tag": "vinkel_over_90"}, {"v": 3, "msg": "En længde kan aldrig være minus.", "tag": "negativ_laengde"}], "hints": ["Hvor mange grader er der i alt i en trekant? Hvor meget bruger den rette vinkel?", "Brug kortet \"Vinkelsum i trekant\".", "90° + 95° = 185°. Det er mere end 180°."], "sentence": "Fejlen: vinklen skal være under 90°."}, {"text": "En AI skriver:\n\"Båndet hælder 30° og løfter 2 m. Det vandrette stykke er −0,31 m.\"\n\nHvad er **fejlen**?", "choices": ["En længde kan ikke være minus. AI'en har regnet i radianer.", "Der er ingen fejl. Minus betyder baglæns.", "Vinklen skulle være minus.", "Båndet skal hælde over 90°."], "answer": 0, "wrong": [{"v": 1, "msg": "En længde kan aldrig være minus. Tjek altid om svaret giver mening.", "tag": "negativ_laengde"}, {"v": 2, "msg": "Vinkler i en trekant er altid over 0°.", "tag": "negativ_vinkel"}, {"v": 3, "msg": "Over 90° kan ikke være i en retvinklet trekant.", "tag": "vinkel_over_90"}], "hints": ["Kan en længde være minus?", "Brug kortet \"Navne på siderne\".", "2 ÷ tan(30°) = 3,46 m. I radianer får man −0,31."], "sentence": "Fejlen: en længde kan ikke være minus. Det rigtige svar er 3,46 m."}]}, {"id": "cafe-middeltal", "title": "Gennemsnit i caféen", "skills": ["grupperet"], "wef": "analytisk", "cards": ["grupperet", "middeltal"], "type": "num", "versions": [{"text": "En café har talt, hvor meget kunderne køber for.\n\nFind **middeltallet** (gennemsnittet) pr. kunde.", "table": [["Køb i kr", "0–50", "50–100", "100–150"], ["Antal kunder", "8", "12", "5"]], "answer": 69.0, "tol": 0.1, "unit": "kr", "wrong": [{"v": 44.0, "msg": "Du brugte venstre kant (0, 50, 100). Brug midtpunkterne: 25, 75, 125.", "tag": "grupperet_venstre_kant", "tol": 0.1}, {"v": 94.0, "msg": "Du brugte højre kant. Brug midtpunkterne: 25, 75, 125.", "tag": "grupperet_hoejre_kant", "tol": 0.1}, {"v": 8.333333, "msg": "Du tog gennemsnit af antal kunder. Gang hvert midtpunkt med antal først.", "tag": "gennemsnit_af_antal", "tol": 0.05}, {"v": 75, "msg": "Du tog gennemsnit af midtpunkterne. Husk at gange med antal kunder.", "tag": "glemte_hyppighed", "tol": 0.1}], "hints": ["Hvad er midten af 0–50?", "Brug kortet \"Middeltal med intervaller\".", "(25 · 8 + 75 · 12 + 125 · 5) ÷ 25"], "sentence": "Kunderne køber i gennemsnit for 69 kr."}, {"text": "En café har talt, hvor meget kunderne køber for.\n\nFind **middeltallet** (gennemsnittet) pr. kunde.", "table": [["Køb i kr", "0–40", "40–80", "80–120"], ["Antal kunder", "6", "10", "4"]], "answer": 56.0, "tol": 0.1, "unit": "kr", "wrong": [{"v": 36.0, "msg": "Du brugte venstre kant (0, 40, 80). Brug midtpunkterne: 20, 60, 100.", "tag": "grupperet_venstre_kant", "tol": 0.1}, {"v": 76.0, "msg": "Du brugte højre kant. Brug midtpunkterne: 20, 60, 100.", "tag": "grupperet_hoejre_kant", "tol": 0.1}, {"v": 6.666667, "msg": "Du tog gennemsnit af antal kunder. Gang hvert midtpunkt med antal først.", "tag": "gennemsnit_af_antal", "tol": 0.05}, {"v": 60, "msg": "Du tog gennemsnit af midtpunkterne. Husk at gange med antal kunder.", "tag": "glemte_hyppighed", "tol": 0.1}], "hints": ["Hvad er midten af 0–40?", "Brug kortet \"Middeltal med intervaller\".", "(20 · 6 + 60 · 10 + 100 · 4) ÷ 20"], "sentence": "Kunderne køber i gennemsnit for 56 kr."}]}, {"id": "lykkehjul", "title": "Lykkehjul i butikken", "skills": ["sandsyn", "pct_antal"], "wef": "analytisk", "cards": ["sandsyn"], "type": "num", "versions": [{"text": "Kunderne må dreje et lykkehjul med 8 lige store felter.\n2 felter giver rabat.\n\nHvad er sandsynligheden for rabat? Svar i **procent**.", "answer": 25.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 0.25, "msg": "Rigtigt som decimaltal! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 2, "msg": "Det er antal felter med rabat. Sandsynlighed = gunstige ÷ mulige.", "tag": "antal_i_stedet_for_procent"}, {"v": 33.333333, "msg": "Du delte med felterne UDEN rabat. Del med alle 8 felter.", "tag": "sandsyn_forkert_naevner", "tol": 0.5}], "hints": ["Hvor mange felter er gode? Hvor mange felter er der i alt?", "Brug kortet \"Sandsynlighed\".", "2 ÷ 8 · 100"], "sentence": "Sandsynligheden for rabat er 25 %."}, {"text": "Kunderne må dreje et lykkehjul med 10 lige store felter.\n3 felter giver rabat.\n\nHvad er sandsynligheden for rabat? Svar i **procent**.", "answer": 30.0, "tol": 0.5, "unit": "%", "wrong": [{"v": 0.3, "msg": "Rigtigt som decimaltal! Gang med 100 for at få procent.", "tag": "glemte_x100", "tol": 0.005}, {"v": 3, "msg": "Det er antal felter med rabat. Sandsynlighed = gunstige ÷ mulige.", "tag": "antal_i_stedet_for_procent"}, {"v": 42.857143, "msg": "Du delte med felterne UDEN rabat. Del med alle 10 felter.", "tag": "sandsyn_forkert_naevner", "tol": 0.5}], "hints": ["Hvor mange felter er gode? Hvor mange felter er der i alt?", "Brug kortet \"Sandsynlighed\".", "3 ÷ 10 · 100"], "sentence": "Sandsynligheden for rabat er 30 %."}]}, {"id": "papkasse-liter", "title": "Papkasse til webshoppen", "skills": ["enheder", "rumfang"], "wef": "analytisk", "cards": ["kasse", "liter", "laengde"], "type": "num", "versions": [{"text": "En papkasse til webshoppen måler\n40 cm × 30 cm × 25 cm.\n\nHvor mange **liter** kan der være i den?", "answer": 30.0, "tol": 0.1, "unit": "L", "wrong": [{"v": 30000, "msg": "Det er cm³. 1 liter = 1.000 cm³. Del med 1.000.", "tag": "enhed_cm3_liter"}, {"v": 95, "msg": "Du lagde målene sammen. Rumfang = l · b · h.", "tag": "lagde_sammen"}, {"v": 300, "msg": "Del med 1.000, ikke med 100.", "tag": "enhed_forkert_faktor"}, {"v": 3, "msg": "Del med 1.000, ikke med 10.000.", "tag": "enhed_forkert_faktor"}], "hints": ["Find først rumfanget i cm³.", "Brug kortet \"Kasse\" og derefter \"Liter og rumfang\".", "40 · 30 · 25 = 30.000 cm³ → ÷ 1.000"], "sentence": "Der kan være 30 liter i kassen."}, {"text": "En papkasse til webshoppen måler\n60 cm × 40 cm × 25 cm.\n\nHvor mange **liter** kan der være i den?", "answer": 60.0, "tol": 0.1, "unit": "L", "wrong": [{"v": 60000, "msg": "Det er cm³. 1 liter = 1.000 cm³. Del med 1.000.", "tag": "enhed_cm3_liter"}, {"v": 125, "msg": "Du lagde målene sammen. Rumfang = l · b · h.", "tag": "lagde_sammen"}, {"v": 600, "msg": "Del med 1.000, ikke med 100.", "tag": "enhed_forkert_faktor"}, {"v": 6, "msg": "Del med 1.000, ikke med 10.000.", "tag": "enhed_forkert_faktor"}], "hints": ["Find først rumfanget i cm³.", "Brug kortet \"Kasse\" og derefter \"Liter og rumfang\".", "60 · 40 · 25 = 60.000 cm³ → ÷ 1.000"], "sentence": "Der kan være 60 liter i kassen."}]}, {"id": "gulv-pris", "title": "Nyt gulv i butikken", "skills": ["areal"], "wef": "argument", "cards": ["rekt"], "type": "num", "versions": [{"text": "Butikken skal have nyt gulv.\nGulvet er 8 m × 5,5 m.\nGulvet koster 249 kr pr. m².\n\nHvad koster det nye gulv?", "answer": 10956.0, "tol": 1, "unit": "kr", "wrong": [{"v": 6723.0, "msg": "Du brugte omkredsen. Gulv er areal: længde · bredde.", "tag": "omkreds_areal", "tol": 1}, {"v": 3361.5, "msg": "Du lagde 8 og 5,5 sammen. Areal = længde · bredde.", "tag": "lagde_sammen", "tol": 1}, {"v": 44, "msg": "Det er arealet. Gang med prisen pr. m².", "tag": "glemte_sidste_trin"}], "hints": ["Hvor mange m² er gulvet?", "Brug kortet \"Rektangel og kvadrat\".", "8 · 5,5 = 44 m² → 44 · 249"], "sentence": "Det nye gulv koster 10.956 kr."}, {"text": "Butikken skal have nyt gulv.\nGulvet er 6 m × 4,5 m.\nGulvet koster 199 kr pr. m².\n\nHvad koster det nye gulv?", "answer": 5373.0, "tol": 1, "unit": "kr", "wrong": [{"v": 4179.0, "msg": "Du brugte omkredsen. Gulv er areal: længde · bredde.", "tag": "omkreds_areal", "tol": 1}, {"v": 2089.5, "msg": "Du lagde 6 og 4,5 sammen. Areal = længde · bredde.", "tag": "lagde_sammen", "tol": 1}, {"v": 27, "msg": "Det er arealet. Gang med prisen pr. m².", "tag": "glemte_sidste_trin"}], "hints": ["Hvor mange m² er gulvet?", "Brug kortet \"Rektangel og kvadrat\".", "6 · 4,5 = 27 m² → 27 · 199"], "sentence": "Det nye gulv koster 5.373 kr."}]}, {"id": "excel-dansk", "title": "Dansk Excel", "skills": ["excel"], "wef": "tekno", "cards": ["excel-fkt", "excel-formler"], "type": "choice", "versions": [{"text": "Priser står i A2:A6. Antal solgt står i B2:B6.\n\nHvilken formel giver den samlede omsætning i **dansk** Excel?", "choices": ["=SUMPRODUCT(A2:A6,B2:B6)", "=SUMPRODUKT(A2:A6;B2:B6)", "=SUM(A2:A6)*SUM(B2:B6)", "=SUMPRODUKT(A2:A6,B2:B6)"], "answer": 1, "wrong": [{"v": 0, "msg": "Det er engelsk Excel. Dansk: SUMPRODUKT og semikolon.", "tag": "excel_engelsk"}, {"v": 2, "msg": "Det ganger alle priser med alle antal. Hver pris skal ganges med sit eget antal.", "tag": "excel_sum_gange_sum"}, {"v": 3, "msg": "Næsten! Dansk Excel bruger semikolon ; mellem områderne.", "tag": "excel_komma"}], "hints": ["Hver pris skal ganges med sit eget antal. Så lægges det sammen.", "Brug kortet \"Dansk Excel\".", "SUMPRODUKT ganger par og lægger sammen. Dansk Excel bruger ;"], "sentence": "=SUMPRODUKT(A2:A6;B2:B6)"}, {"text": "Du vil regne 10 · tan(42°) i **dansk** Excel.\n\nHvilken formel er rigtig?", "choices": ["=10*TAN(42)", "=10*TAN(RADIANER(42))", "=10*TAN(GRADER(42))", "=10·tan(42°)"], "answer": 1, "wrong": [{"v": 0, "msg": "Excel regner i radianer. Brug RADIANER(42).", "tag": "excel_radianer"}, {"v": 2, "msg": "GRADER laver radianer om til grader. Du skal den anden vej: RADIANER.", "tag": "excel_grader"}, {"v": 3, "msg": "Excel bruger * for gange, og man skriver ikke °.", "tag": "excel_syntaks"}], "hints": ["Hvilken enhed bruger Excel for vinkler?", "Brug kortet \"Excel: formler til prøven\".", "Excel vil have radianer: TAN(RADIANER(42))"], "sentence": "=10*TAN(RADIANER(42)) giver 9,0."}]}, {"id": "ai-laan", "title": "Tjek AI'ens lån", "skills": ["rente", "faktor"], "wef": "kritisk_ai", "cards": ["rentesrente"], "type": "num", "versions": [{"text": "En AI skriver:\n\"Lån 20.000 kr til butikken med 5 % rente om året. Efter 3 år skylder du 23.000 kr.\"\n\nHvad skylder du **rigtigt** efter 3 år (renters rente)?", "answer": 23152.5, "tol": 1, "unit": "kr", "wrong": [{"v": 23000, "msg": "Det er AI'ens svar. Den glemte rente af renten.", "tag": "renter_simpel"}, {"v": 3152.5, "msg": "Det er kun renterne. Opgaven spørger om hele beløbet.", "tag": "svarede_renter", "tol": 1}], "hints": ["Bliver renten regnet af 20.000 kr hvert år? Eller af det nye beløb?", "Brug kortet \"Renters rente\".", "20.000 · 1,05³"], "sentence": "Jeg skylder 23.152,50 kr. AI'en glemte renters rente."}, {"text": "En AI skriver:\n\"Lån 10.000 kr til butikken med 4 % rente om året. Efter 5 år skylder du 12.000 kr.\"\n\nHvad skylder du **rigtigt** efter 5 år (renters rente)?", "answer": 12166.529024, "tol": 1, "unit": "kr", "wrong": [{"v": 12000, "msg": "Det er AI'ens svar. Den glemte rente af renten.", "tag": "renter_simpel"}, {"v": 2166.529024, "msg": "Det er kun renterne. Opgaven spørger om hele beløbet.", "tag": "svarede_renter", "tol": 1}], "hints": ["Bliver renten regnet af 10.000 kr hvert år? Eller af det nye beløb?", "Brug kortet \"Renters rente\".", "10.000 · 1,04⁵"], "sentence": "Jeg skylder 12.166,53 kr. AI'en glemte renters rente."}]}], "skills": {"pct_antal": ["Procent eller antal?", "Læs spørgsmålet: Vil de have procent eller et antal?", "pct-hvor"], "pct_baglaens": ["Baglæns procent (prisen før)", "Prisen før = ny pris ÷ faktor (fx ÷ 1,12).", "baglaens"], "moms": ["Moms", "Uden moms = med moms ÷ 1,25.", "moms"], "pct_aendring": ["Procentvis ændring", "Ændring ÷ GAMMEL værdi · 100.", "pct-aendr"], "faktor": ["Flere %-ændringer efter hinanden", "Gang med én faktor ad gangen.", "faktor"], "graf": ["Læse tabel og graf (hældning)", "x er tallene i tabellen – ikke række 1, 2, 3.", "haeldning"], "ligning_tekst": ["Lave en ligning ud fra tekst", "Kald det ukendte x. Skriv hver sætning som et regnestykke.", "ligning"], "ulighed": ["Uligheder (højst / mindst)", "\"Højst\" betyder ≤. Rund ned til et helt tal.", "ulighed"], "break_even": ["Hvornår koster det det samme?", "Sæt de to forskrifter lig hinanden.", "skaering"], "trig_side": ["Trekant: find en side med tan", "tan = modstående ÷ hosliggende. Hosliggende er aldrig den lange side.", "tan-side"], "trig_vinkel": ["Trekant: find en vinkel", "Brug tan⁻¹, sin⁻¹ eller cos⁻¹ – i grader.", "find-vinkel"], "trig_graense": ["Vinkler og længder der giver mening", "Spids vinkel: under 90°. En længde er aldrig minus.", "sider"], "grupperet": ["Gennemsnit med intervaller", "Brug midtpunktet i hvert interval.", "grupperet"], "sandsyn": ["Sandsynlighed", "Gunstige ÷ mulige.", "sandsyn"], "enheder": ["Enheder (cm³ → liter)", "1 liter = 1.000 cm³.", "liter"], "rumfang": ["Rumfang", "Kasse: l · b · h.", "kasse"], "areal": ["Areal og pris pr. m²", "Areal = længde · bredde. Omkreds er noget andet.", "rekt"], "excel": ["Dansk Excel", "Dansk: SUMPRODUKT, RADIANER og semikolon ;", "excel-formler"], "rente": ["Renters rente", "K · (1 + r)ⁿ.", "rentesrente"]}, "wef": {"analytisk": "Analytisk tænkning", "kritisk_ai": "Find fejlen i et AI-svar", "argument": "Argumentér for en beslutning med tal", "tekno": "Teknologisk kunnen (regneark)", "kritisk": "Kritisk tænkning (tjek om det giver mening)"}, "cardTitles": {"point": "Point-skabelonen (5 linjer)", "undersoeg": "“Undersøg …”-opgaver", "tjek": "Tjek dit svar (30 sek.)", "rr": "Regnerækkefølge", "broek": "Brøker", "omregn": "Brøk, decimaltal og procent", "pct-af": "Find procentdelen (p % af et tal)", "pct-hvor": "Hvor mange procent? (procent af antal)", "pct-aendr": "Procentvis ændring (stigning/fald)", "faktor": "Fremskrivningsfaktor (op og ned med %)", "baglaens": "Baglæns procent (prisen før)", "moms": "Moms (25 %)", "rabat": "Rabat og tilbud", "promille": "Promille (‰)", "rente": "Rente (én termin)", "rentesrente": "Renters rente (kapitalfremskrivning)", "valuta": "Valuta (kurs)", "potens": "Potenser", "rod": "Kvadratrod", "storetal": "Store og små tal (10-potenser)", "afrund": "Afrunding og overslag", "forhold": "Forhold (a : b)", "reduc": "Reducering", "ligning": "Ligninger", "ulighed": "Uligheder", "formler": "Brug en formel (indsæt og isolér)", "to-ligninger": "To ligninger med to ubekendte", "koord": "Koordinatsystem", "linear": "Lineær funktion y = ax + b", "haeldning": "Hældning ud fra to punkter", "skaering": "Skæring mellem to linjer (break-even)", "tabel": "Tabel → graf → forskrift", "propor": "Ligefrem proportionalitet", "omvendt": "Omvendt proportionalitet", "eksp": "Eksponentiel funktion (vækst med %)", "parabel": "Andengradsfunktion (parabel)", "vinkeltyper": "Vinkeltyper", "nabovinkel": "Nabovinkler og topvinkler", "vinkelsum": "Vinkelsum i trekant og firkant", "pyth": "Pythagoras", "sider": "Navne på siderne (start ved vinklen)", "trig": "sin, cos og tan", "tan-side": "Find en side med tan (vinkel i hver ende)", "find-vinkel": "Find en vinkel (tan⁻¹, sin⁻¹, cos⁻¹)", "ensvinklet": "Ensvinklede trekanter", "maalestok": "Målestok (1 : 50)", "skalering": "Skalering: k, k² og k³", "rekt": "Rektangel og kvadrat", "trekant": "Trekant (areal)", "parallelogram": "Parallelogram", "trapez": "Trapez", "cirkel": "Cirkel", "udsnit": "Cirkeludsnit og cirkelbue", "kasse": "Kasse (rumfang og overflade)", "prisme": "Prisme", "cylinder": "Cylinder", "pyramide": "Pyramide", "kegle": "Kegle", "kugle": "Kugle", "laengde": "Enheder: længde, areal, rumfang", "liter": "Liter og rumfang", "tid": "Tid, fart og km/t ↔ m/s", "massefylde": "Massefylde", "afstand": "Afstand mellem to punkter", "hyppighed": "Hyppighed og frekvens", "middeltal": "Middeltal (gennemsnit)", "grupperet": "Middeltal med intervaller (midtpunkter)", "median": "Median", "typetal": "Typetal og variationsbredde", "kvartil": "Kvartiler og boksplot", "sumkurve": "Sumkurve (summeret frekvens)", "sammenlign": "Sammenlign to grupper (argumenter)", "sandsyn": "Sandsynlighed", "to-haendelser": "To ting på én gang (tælletræ)", "kombinatorik": "Kombinatorik (hvor mange muligheder?)", "excel-fkt": "Dansk Excel: de vigtigste funktioner", "excel-formler": "Excel: formler til prøven"}, "calcCards": {"calc-pct": ["pct-af", "pct-hvor", "pct-aendr", "faktor", "baglaens", "moms", "rabat"], "calc-rente": ["rente", "rentesrente"], "calc-linje": ["linear", "haeldning"], "calc-pyth": ["pyth"], "calc-trig": ["trig", "tan-side"], "calc-vinkel": ["find-vinkel"], "calc-rum": ["kasse", "prisme", "cylinder", "pyramide", "kegle", "kugle"], "calc-stat": ["middeltal", "grupperet", "median", "typetal", "kvartil"]}};</script>
 <script>/* ---- Task generators (v2): fresh numbers every time, misconception values computed ---- */
 (function(){
 "use strict";
@@ -2174,7 +2206,7 @@ function iso(t){var d=new Date(t),p=function(n){return (n<10?'0':'')+n;};var o=-
 // ---------------- storage ----------------
 function fresh(){return {v:1,created:now(),sessions:[],events:[],runs:[],aliases:[],deadTerms:[],extraTasks:[]};}
 var S; try{S=JSON.parse(localStorage.getItem(KEY))||fresh();}catch(e){S=fresh();}
-['sessions','events','runs','aliases','deadTerms','extraTasks','drills','rounds','teach'].forEach(function(k){if(!Array.isArray(S[k])) S[k]=[];});
+['sessions','events','runs','aliases','deadTerms','extraTasks','drills','rounds','teach','signals','extraSets'].forEach(function(k){if(!Array.isArray(S[k])) S[k]=[];});
 try{var raw0=localStorage.getItem(KEY)||''; if(raw0.length>3e6||S.events.length>40000) compact(30);}catch(e){}
 var saveT=null, storageOK=true, lastSize=0;
 // Low-value detail events. Their totals survive in each run (dwell, calcs), so old ones can be dropped.
@@ -2375,6 +2407,7 @@ function metrics(){
   S.runs.forEach(function(r){
     if(!r.end) return;
     var idle=!(r.attempts&&r.attempts.length)&&!r.hintMax&&!r.ai;
+    if(r.status==='plan') return; // plan-only practice: not a calculation
     if((r.status==='afbrudt'||r.status==='sprunget over')&&idle&&(r.ms||0)<15000) return; // accidental / instant skip
     (r.attempts||[]).forEach(function(a){if(a.tag) mis[a.tag]=(mis[a.tag]||0)+1;});
     (r.skills||[]).forEach(function(k){
@@ -2708,7 +2741,7 @@ function teachIntro(){
 }
 function teachBanner(){
   var p=pendingTeach()[0]; if(!p) return '';
-  return '<div class="teachban"><div><b>🎯 Fra din '+(p.src==='saet'?'opgavesæt-runde':'prøve-runde')+':</b> Lær '+esc(skillLabel(p.skill))+' <span>(ca. 3 min)</span></div>'+
+  return '<div class="teachban"><div><b>🎯 Fra din '+(p.src==='saet'?'opgavesæt-runde':p.src==='skole'?'skoleopgave':'prøve-runde')+':</b> Lær '+esc(skillLabel(p.skill))+' <span>(ca. 3 min)</span></div>'+
     '<div class="tools"><button class="btn go" data-teach="'+esc(p.skill)+'">Start ▶</button><button class="tbtn quietb" data-snooze="'+esc(p.skill)+'">Ikke nu</button></div></div>';
 }
 function bindTeachButtons(){
@@ -2718,11 +2751,12 @@ function bindTeachButtons(){
 
 // ---------------- rounds ----------------
 var P=$('tpanel'), ROUND=null, DRILL=null, HOMESKILL=null;
-var MODES={quick:{n:5,label:'Hurtig runde'},hul:{n:3,label:'Lap et hul'},saet:{n:4,label:'Opgavesæt'},laer:{n:3,label:'Lær'},proeve:{n:8,label:'Prøve-runde'},drill:{n:10,label:'Find kortet'},fri:{n:1,label:'Opgave'}};
+var MODES={skole:{n:1,label:'Skoleopgave'},plan:{n:5,label:'Plan-træning'},quick:{n:5,label:'Hurtig runde'},hul:{n:3,label:'Lap et hul'},saet:{n:4,label:'Opgavesæt'},laer:{n:3,label:'Lær'},proeve:{n:8,label:'Prøve-runde'},drill:{n:10,label:'Find kortet'},fri:{n:1,label:'Opgave'}};
 // ---- linked task sets: each part is a "virtual task" so metrics and card tracking work per skill ----
 var VT={}, LET='abcdefgh';
 function vtask(id){
   if(VT[id]) return VT[id];
+  if(/^skole-/.test(id||'')) return skVtask(id);
   var m=/^(saet-[a-z]+)#([a-h])$/.exec(id||''); if(!m||!window.TRAINGEN||!TRAINGEN.makeSet) return null;
   var s=TRAINGEN.makeSet(m[1],1), i=LET.indexOf(m[2]), p=s&&s.parts[i]; if(!p) return null;
   VT[id]={id:id,title:s.title+' '+m[2]+')',skills:p.skills,cards:p.cards,type:'num',wef:'analytisk',versions:[],part:true};
@@ -2759,6 +2793,7 @@ function runById(id){for(var i=S.runs.length-1;i>=0;i--) if(S.runs[i].id===id) r
 function itemState(it){
   if(it.drill) return it.ok==null?'cur':(it.ok?'perfect':'miss');
   var r=runById(it.run); if(!r||!r.end) return 'cur';
+  if(r.status==='plan') return r.plan&&r.plan.clean?'perfect':'ok';
   if(ROUND&&ROUND.mode==='proeve') return 'done';
   if(r.status==='rigtig') return (!r.wrong&&!r.hintMax&&!r.ai)?'perfect':'ok';
   return 'miss';
@@ -2766,14 +2801,14 @@ function itemState(it){
 function roundBar(){
   if(!ROUND) return '';
   if(ROUND.mode==='fri') return '<div class="rb"><button class="tbtn" id="rbstop">← Hjem</button></div>';
-  var lbl=MODES[ROUND.mode].label+(ROUND.mode==='saet'&&ROUND.title?': '+ROUND.title:'')+(ROUND.mode==='laer'?': '+skillLabel(ROUND.skill):'');
+  var lbl=MODES[ROUND.mode].label+((ROUND.mode==='saet'||ROUND.mode==='skole')&&ROUND.title?': '+ROUND.title:'')+(ROUND.mode==='laer'?': '+skillLabel(ROUND.skill):'');
   var d='';for(var i=0;i<ROUND.n;i++){var it=ROUND.items[i];var stt=it?itemState(it):'';d+='<span class="pdot '+stt+'">'+({perfect:'✓',ok:'✓',miss:'–',done:'•'}[stt]||'')+'</span>';}
   return '<div class="rb"><div><div class="rbtxt">'+esc(lbl)+' · '+Math.min(ROUND.items.length,ROUND.n)+' af '+ROUND.n+'</div><div class="dots" aria-hidden="true">'+d+'</div></div><button class="tbtn rbx" id="rbstop">✕ Stop</button></div>';
 }
 function bindRoundBar(){var b=$('rbstop');if(b) b.onclick=function(){if(run&&!run.end) endRun('afbrudt');roundEnd(true);};}
 function refreshDots(){var rb=P.querySelector('.rb');if(!rb||!ROUND) return;var tmp=document.createElement('div');tmp.innerHTML=roundBar();rb.parentNode.replaceChild(tmp.firstChild,rb);bindRoundBar();}
-function stepper(pr){return '<div class="stepper" id="stepper" data-pr="'+(pr?1:0)+'"><span class="stp" data-s="1">1 · Find kortet</span><span class="stp" data-s="2">2 · Regn</span>'+(pr?'':'<span class="stp" data-s="3">3 · <span class="xl">Skriv </span>sætning</span>')+'</div><p class="now" id="now" aria-live="polite"></p>';}
-var NOW={1:function(){return 'Find kortet i formelsamlingen '+where()+'. Søg på et ord fra opgaven.';},
+function stepper(pr,pl){return '<div class="stepper" id="stepper" data-pr="'+(pr?1:0)+'">'+(pl?'<span class="stp" data-s="0">🧭 Plan</span>':'')+'<span class="stp" data-s="1">1 · Find kortet</span><span class="stp" data-s="2">2 · Regn</span>'+(pr?'':'<span class="stp" data-s="3">3 · <span class="xl">Skriv </span>sætning</span>')+'</div><p class="now" id="now" aria-live="polite"></p>';}
+var NOW={0:function(){return 'Lav en plan, før du regner: mål, tal og trin.';},1:function(){return 'Find kortet i formelsamlingen '+where()+'. Søg på et ord fra opgaven.';},
   2:function(pr){return pr?'Regn det ud. Skriv dit svar, og tryk Gem.':'Regn det ud, og skriv dit svar herunder.';},
   3:function(){return 'Skriv svaret som en hel sætning – med tal og enhed.';},
   4:function(){return 'Færdig! Tryk på den grønne knap.';}};
@@ -2784,8 +2819,10 @@ function startRound(mode,skill,firstTask){
   if(run&&!run.end) endRun('afbrudt');
   ROUND={id:uid(),mode:mode,n:roundLen(mode),items:[],skill:skill||null,start:now()};
   if(mode==='saet'||mode==='proeve'){var bq=buildSetQueue(mode==='proeve'?2:1);ROUND.queue=bq.q;ROUND.sets=bq.sets;ROUND.n=bq.q.length;ROUND.title=bq.q.length?bq.q[0].v.context.title:'';}
+  if(mode==='skole'){var sq=skQueue(skill);ROUND.queue=sq;ROUND.n=sq.length;ROUND.title=sq.length?sq[0].v.context.title:'';ROUND.skoleId=skill;ROUND.skill=null;if(!sq.length){ROUND=null;return skoleScreen();}}
   if(mode==='hul'||mode==='laer'){var Mk=skill?metrics().perSkill[skill]:null;ROUND.fade=mode==='laer'||!Mk||Mk.mastery<0.6;}
   if(mode==='laer') ROUND.teach=teachFor(skill);
+  if(mode==='plan'){ROUND.sigAt=[1,3,6];ROUND.n+=3;}
   log('round_start',{mode:mode,skill:skill||null,round:ROUND.id,sets:ROUND.sets||null,fade:!!ROUND.fade});
   if(mode==='drill'){run=null;nextDrill();} else if(mode==='laer'){run=null;teachIntro();} else nextRoundTask(firstTask);
 }
@@ -2794,11 +2831,12 @@ function nextRoundTask(force){
   if(!ROUND) return homeScreen();
   if(ROUND.items.length>=ROUND.n) return roundEnd();
   if(ROUND.queue){var qq=ROUND.queue[ROUND.items.length];newTask(qq.t,qq.v);ROUND.items.push({task:qq.t.id,run:run.id,setKey:qq.v.setKey,part:qq.v.partIdx});taskScreen();return;}
+  if(ROUND.mode==='plan'&&ROUND.sigAt&&ROUND.sigAt.indexOf(ROUND.items.length)>=0) return signalItem();
   var ex=ROUND.items.map(function(i){return i.task;}), av=null;
   if(ROUND.mode==='proeve'){av=[];ROUND.items.forEach(function(i){var t=taskById(i.task);if(t) av=av.concat(t.skills);});}
   if(ROUND.mode==='quick'){var pt=ROUND.items.length?taskById(ROUND.items[ROUND.items.length-1].task):(run?taskById(run.task):null);if(pt) av=pt.skills.slice();}
   if(!force&&ROUND.mode==='laer'&&!ROUND.items.length&&ROUND.teach&&ROUND.teach.task){var tt=taskById(ROUND.teach.task);if(tt&&!tt.part&&tt.skills.indexOf(ROUND.skill)>=0) force=tt;}
-  var t=force||pickNext(ex.length?ex:(run?[run.task]:[]),ROUND.skill,av);
+  var t=force||(ROUND.mode==='plan'?pickPlanTask(ex):pickNext(ex.length?ex:(run?[run.task]:[]),ROUND.skill,av));
   newTask(t);
   ROUND.items.push({task:t.id,run:run.id});
   taskScreen();
@@ -2845,17 +2883,19 @@ function homeScreen(){
   ROUND=null; DRILL=null;
   var td=todayStats(), due=dueCount(), ws=weakSkill(); HOMESKILL=ws;
   var line=(td.n||td.drill)?('I dag: '+td.ok+(td.ok===1?' rigtig':' rigtige')+(td.drill?' · '+td.drill+' kort fundet':'')+(td.min>=1?' · '+td.min+' min':'')):'Vælg en runde. Korte runder virker bedst.';
-  P.innerHTML='<div class="home"><h2>Hej Louis 👋</h2><p class="today">'+esc(line)+'</p>'+weekRow()+planLine()+'</div>'+introCard()+teachBanner()+
+  P.innerHTML='<div class="home"><h2>Hej Louis 👋</h2><p class="today">'+esc(line)+'</p>'+weekRow()+planLine()+'</div>'+introCard()+newsCard()+teachBanner()+
     '<div class="tiles">'+
     tile('quick','⚡','Hurtig runde',roundLen('quick')+' opgaver · ca. '+(roundLen('quick')*2)+' min',dueRetests()?dueRetests()+' genbesøg venter':(due?due+' skal genopfriskes':''),'#5b21b6','primary')+
+    tile('plan','🧭','Plan-træning',roundLen('plan')+' planer + 3 signalord · ca. 5 min','','#5b21b6','')+
     tile('drill','🎯','Find kortet',roundLen('drill')+' hurtige · ca. 2 min','','#5b21b6','')+
     tile('hul','🩹','Lap et hul',roundLen('hul')+' opgaver: '+(ws?skillLabel(ws):'nyt emne'),'','#5b21b6','')+
-    tile('saet','🧩','Opgavesæt','3–4 delopgaver, der hænger sammen','','#5b21b6','')+
+    tile('saet','🧩','Opgavesæt','3–4 delopgaver, der hænger sammen','','#5b21b6','')+skoleTile()+
     tile('proeve','📝','Prøve-runde','2 opgavesæt · ingen hjælp','','#5b21b6','')+
     '</div>'+homeFoot();
-  [].forEach.call(P.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){var m=b.getAttribute('data-mode');startRound(m,m==='hul'?HOMESKILL:null);};});
+  [].forEach.call(P.querySelectorAll('[data-mode]'),function(b){b.onclick=function(){var m=b.getAttribute('data-mode');if(m==='skole') return skoleScreen();startRound(m,m==='hul'?HOMESKILL:null);};});
   bindHomeFoot(); P.scrollTop=0; setTab('task');
   bindPlanLine(); bindTeachButtons();
+  bindNews();
   var io2=$('introok'); if(io2) io2.onclick=function(){PREF.introSeen=true;savePref();var c=$('intro');if(c) c.remove();};
 }
 
@@ -2874,7 +2914,7 @@ function endRun(status){
 }
 function newTask(t,pv){
   if(run&&!run.end) endRun('sprunget over');
-  var n=S.runs.filter(function(r){return r.task===t.id;}).length, seed=pv?pv.seed:(Math.random()*4294967296)>>>0;
+  var n=S.runs.filter(function(r){return r.task===t.id;}).length, seed=pv?pv.seed:(ROUND&&ROUND.mode==='plan'&&PL[t.id]?planSeed(t):(Math.random()*4294967296)>>>0);
   var gv=pv||(window.TRAINGEN&&TRAINGEN.has(t.id)?TRAINGEN.make(t.id,seed,t.type):null);
   task=t; ver=gv||t.versions[n%t.versions.length]; taskNo++;
   run={id:uid(),session:SESSION.id,task:t.id,ver:pv?'set':(gv?'gen':n%t.versions.length),seed:gv?seed:null,set:pv?pv.setKey:null,part:pv?pv.partIdx:null,confidence:null,follow:false,retest:!!(t&&!t.part&&retestDue(t.id)),scaffold:false,mode:ROUND?ROUND.mode:'fri',round:ROUND?ROUND.id:null,
@@ -2895,16 +2935,18 @@ function media(v){
 }
 function taskScreen(){
   var t=task,v=ver,pr=ROUND&&ROUND.mode==='proeve';
+  var PLN=pr?null:planPrep(t,v), PLW=!!(PLN&&planWanted(t,PLN)&&ROUND&&ROUND.mode!=='laer'&&fadeStage()!==0);
+  if(PLN&&run&&run.verData) run.verData.text=v.text;
   var ansHtml;
   if(t.type==='choice'){var ord=v.choices.map(function(c,i){return i;}).sort(function(){return Math.random()-0.5;});
     ansHtml='<div class="choices">'+ord.map(function(i){var c=v.choices[i];return '<button class="btn'+(/^=/.test(c)?' mono':'')+'" data-ch="'+i+'">'+esc(c)+'</button>';}).join('')+'</div>';}
   else ansHtml='<div class="ansrow"><label for="ans" class="vh">Dit svar</label><input id="ans" inputmode="decimal" autocomplete="off" placeholder="Dit svar"><span class="unit">'+esc(v.unit||'')+'</span><button class="btn go" id="check">'+(pr?'Gem svar →':'Tjek ✓')+'</button></div>';
   var isPart=!!v.context;
   var WE=workedExample();
-  P.innerHTML=roundBar()+stepper(pr)+setContext(v,pr)+WE+
+  P.innerHTML=roundBar()+stepper(pr,PLW)+setContext(v,pr)+WE+
     '<div class="tcard'+(isPart?' part':'')+'"><div class="tchip">'+esc(isPart?'Delopgave '+v.letter+')':t.title)+'</div>'+(run.retest?'<span class="rtchip">🔁 Genbesøg – den drillede sidst</span>':'')+'<button class="ibtn spk" id="read" aria-label="Læs opgaven op" title="Læs op">🔊</button><p class="task-text">'+(isPart?'<span class="plet">'+v.letter+')</span> ':'')+mdLines(v.text)+'</p>'+media(v)+'</div>'+
     '<div id="work">'+ansHtml+'<div class="fb" id="fb" role="status" aria-live="polite"></div>'+
-    '<div class="tools">'+(pr?'':'<button class="tbtn help" id="stuck">🆘 Hjælp</button>')+'<button class="tbtn" id="mic">🎤 Tænk højt</button><button class="tbtn" id="typeit" title="Skriv dine tanker i stedet for at sige dem">✏️ Skriv</button><button class="tbtn quietb" id="skip">'+(pr?'Ved ikke →':'Spring over')+'</button></div>'+
+    '<div class="tools">'+(pr?'':'<button class="tbtn help" id="stuck">🆘 Hjælp</button>')+(PLN&&!PLW&&!pr?'<button class="tbtn" id="optplan">🧭 Lav en plan</button>':'')+'<button class="tbtn" id="mic">🎤 Tænk højt</button><button class="tbtn" id="typeit" title="Skriv dine tanker i stedet for at sige dem">✏️ Skriv</button><button class="tbtn quietb" id="skip">'+(pr?'Ved ikke →':'Spring over')+'</button></div>'+
     '<div class="live" id="live"></div><div id="typebox" class="hide"><textarea id="tt" rows="2" placeholder="Skriv kort, hvad du vil gøre"></textarea><button class="tbtn" id="ttsave">Gem</button></div>'+
     '<ul class="saidlist" id="said"></ul><div class="hintbox" id="hint"></div></div>';
   bindRoundBar();
@@ -2925,6 +2967,8 @@ function taskScreen(){
     $('ans').addEventListener('focus',function(){if(run&&!run.firstRelevantMs) setStep(2);});}
   renderSaid(); P.scrollTop=0; setTab('task');
   setStep(run.firstRelevantMs?2:1);
+  var op=$('optplan'); if(op) op.onclick=function(){planStart(true);};
+  if(PLW) planStart(false);
   q.classList.add('cue'); setTimeout(function(){q.classList.remove('cue');},2600);
   if(!SR) $('mic').title='Tale virker ikke i denne browser';
   if(PREF.read) readAloud();
@@ -3136,13 +3180,18 @@ function roundEnd(early){
     var found=rs.filter(function(r){return r.firstRelevantMs&&r.firstRelevantVia!=='hint';}).length;
     var sent=rs.filter(function(r){return r.sentence&&r.sentence.num&&r.sentence.unit;}).length;
     sum={n:rs.length,right:right,first:first,found:found,sentences:sent};
-    if(R0.mode==='proeve'){
+    if(R0.mode==='plan'){
+      var pst=planStats(rs), sst=signalStats(R0.items);
+      h='<h2 class="endh">'+(pst.n&&pst.clean===pst.n?'Alle planer i første forsøg! 🔥':'Plan-træning færdig')+'</h2>'+statgrid([[pst.clean+'/'+pst.n,'planer i første forsøg'],[sst.ok+'/'+sst.n,'signalord'],[mins+' min','tid']])+planCard(rs,'plan')+
+        (sst.miss.length?'<div class="tipbox"><b>Signalord at huske</b><br>'+sst.miss.map(function(w){var x=SIGNALS.filter(function(s){return s.w===w;})[0];return '<b>'+esc(w)+'</b>: '+esc(x?x.why:'');}).join('<br>')+'</div>':'');
+      say='Plan-træning færdig. '+pst.clean+' ud af '+pst.n+' planer rigtige i første forsøg.'; sum.plans=pst;
+    } else if(R0.mode==='proeve'){
       h='<h2 class="endh">Prøve-runde færdig</h2>'+statgrid([[right+'/'+rs.length,'rigtige'],[mins+' min','tid'],[found+'','kort fundet selv']])+diagCard(rs,'proeve')+'<h3 class="sub3">Gennemgang</h3>'+
         rs.map(function(r,i){var t=taskById(r.task),pv=r.proeve||{},ok=r.status==='rigtig';
           return '<div class="rev'+(ok?'':' x')+'"><b>'+(i+1)+'. '+esc(t?t.title:r.task)+'</b> '+(ok?'✓':'✗')+(pv.follow?' <span class="newtag">følgefejl – giver point</span>':'')+'<br>Dit svar: '+esc(pv.raw||'(ved ikke)')+(ok?'':' · Rigtigt: '+esc(ansText(r)))+(pv.msg?'<br><small>'+esc(pv.msg)+'</small>':'')+(!ok&&t?'<br><button class="tbtn" data-show="'+esc(t.cards[0])+'">Se kortet: '+esc(CT[t.cards[0]]||'')+' →</button>':'')+'</div>';}).join('');
       say='Prøve-runde færdig. Du fik '+right+' ud af '+rs.length+' rigtige.';
     } else {
-      h='<h2 class="endh">'+(rs.length&&right===rs.length?'Alle rigtige! 🔥':'Runde færdig')+'</h2>'+statgrid([[right+'/'+rs.length,'rigtige'],[first+'','i første forsøg'],[found+'','kort fundet selv']])+(R0.mode==='saet'?diagCard(rs,'saet'):'');
+      h='<h2 class="endh">'+(rs.length&&right===rs.length?'Alle rigtige! 🔥':'Runde færdig')+'</h2>'+statgrid([[right+'/'+rs.length,'rigtige'],[first+'','i første forsøg'],[found+'','kort fundet selv']])+(R0.mode==='saet'||R0.mode==='skole'?diagCard(rs,R0.mode):'')+planCard(rs,R0.mode);
       var cnt={},msgs={};rs.forEach(function(r){(r.attempts||[]).forEach(function(a){if(a.tag){cnt[a.tag]=(cnt[a.tag]||0)+1;if(a.msg) msgs[a.tag]=a.msg;}});});
       var top=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a];})[0];
       if(top&&msgs[top]) h+='<div class="tipbox"><b>Husk til næste gang</b><br>'+esc(msgs[top])+'</div>';
@@ -3168,10 +3217,12 @@ function roundEnd(early){
   }
   log('round_end',{round:R0.id,mode:R0.mode,summary:sum,early:!!early}); tuneRoundLength(R0.mode); saveNow();
   P.innerHTML='<div class="endwrap pop">'+h+'</div>'; P.scrollTop=0; setTab('task');
-  $('again').onclick=function(){startRound(R0.mode,R0.mode==='hul'?R0.skill:null);};
+  $('again').onclick=function(){if(R0.mode==='skole') return skoleScreen();startRound(R0.mode,R0.mode==='hul'?R0.skill:null);};
+  if(R0.mode==='skole') $('again').textContent='Flere skoleopgaver ▶';
   $('home').onclick=homeScreen;
   $('stopday').onclick=stopDay;
   var p5=$('pause5'); if(p5) p5.onclick=pauseTimer;
+  var gp=$('goplan'); if(gp) gp.onclick=function(){startRound('plan');};
   [].forEach.call(P.querySelectorAll('[data-show]'),function(b){b.onclick=function(){showCard(b.getAttribute('data-show'),'round');};});
   bindTeachButtons();
   try{$('again').focus({preventScroll:true});}catch(e){} P.scrollTop=0; autoSpeak(say,'round');
@@ -3375,7 +3426,7 @@ function renderParent(){
   '<br><b>Find kortet-drill:</b> '+M.drill.ok+' af '+M.drill.n+' rigtige'+(M.drill.avgSec!=null?' · gns. '+String(M.drill.avgSec).replace('.',',')+' sek.':'')+
   '<br><b>Svar-sætninger:</b> '+M.sentences.full+' af '+M.sentences.n+' med tal, enhed og hel sætning · mangler enhed: '+M.sentences.missingUnit+' · sprunget over: '+M.sentences.skipped+
   '<br><b>Sikkerhed (1. forsøg):</b> '+[[3,'😎 helt sikker'],[2,'🙂 nogenlunde'],[1,'😬 gætter']].map(function(x){var c=M.confidence.byLevel[x[0]];return x[1]+' '+c.ok+'/'+c.n+' rigtige';}).join(' · ')+(Object.keys(M.confidence.sureWrongTags).length?' · <b>sikker men forkert:</b> '+Object.keys(M.confidence.sureWrongTags).map(function(k){return esc(k)+' ×'+M.confidence.sureWrongTags[k];}).join(', '):'')+' · følgefejl godkendt: '+M.followErrors+
-  '<br><b>Runder:</b> '+(Object.keys(M.rounds).map(function(k){return ({quick:'hurtige',drill:'find kortet',hul:'lap et hul',saet:'opgavesæt',proeve:'prøve'}[k]||k)+' '+M.rounds[k];}).join(' · ')||'ingen endnu')+'</p>'+
+  planParentLine()+'<br><b>Runder:</b> '+(Object.keys(M.rounds).map(function(k){return ({plan:'plan-træning',quick:'hurtige',drill:'find kortet',hul:'lap et hul',saet:'opgavesæt',proeve:'prøve'}[k]||k)+' '+M.rounds[k];}).join(' · ')||'ingen endnu')+'</p>'+
   '<table><tr><th>Færdighed</th><th>Forsøg</th><th>Rigtig</th><th>1. forsøg</th><th>Gns. hjælp</th><th>Søgninger før rigtigt kort</th><th>Fejlede søgninger</th><th>Styrke</th></tr>'+rows+'</table>'+
   '<p><b>Typiske fejl:</b> '+mis+'</p>'+
   '<h3>Appen lærer af Louis</h3><p class="note">Appen tilpasser sig selv efter hver opgave og runde. Her kan du se, hvad den har ændret og hvorfor.</p>'+adaptPanel()+'<h3>3 · Louis\' ord</h3><p>Ord Louis søgte på, før han selv fandt kortet. Et ord bliver aktivt i søgningen, når du trykker Behold – eller når Louis har brugt det samme ord til det samme kort 2 gange. </p><p><button class="btn go" id="buildexam">⬇ Byg prøve-formelsamling med godkendte ord</button><button class="btn" id="exwords">⬇ Hent ordliste</button></p><p class="note">Prøvefilen bygges ud fra formelsamlingen i denne træningsfil, med Louis\' godkendte ord lagt ind i søgningen. Den har ingen træning, ingen dataopsamling og ingen AI. Sammenlign den med jeres nuværende prøvefil, før den bruges til prøven.</p><table><tr><th>Louis skrev</th><th>Kort</th><th>Status</th><th></th></tr>'+al+'</table><p><b>Ord uden kort:</b> '+dt+'</p>'+
@@ -3385,7 +3436,7 @@ function renderParent(){
   '<label>API-nøgle</label><input type="password" id="ai-key" autocomplete="off" placeholder="indsæt nøgle" value="'+esc(c.key||'')+'">'+
   '<div><button class="btn go" id="ai-save">Gem</button><button class="btn quiet" id="ai-del">Slet nøgle (slå AI fra)</button></div><p>Status: <b>'+(aiOn()?'AI-hjælper er slået TIL':'Slået fra – knappen bruger de indbyggede ledetråde')+'</b></p>'+
   '<h3>5 · Opgaver</h3><table><tr><th>Opgave</th><th>Færdigheder</th><th>Løst</th><th></th></tr>'+tl+'</table>'+
-  '<p><label>Importér nye opgaver fra tutoren (JSON)</label><input type="file" id="imp" accept=".json,application/json"></p><p id="impmsg"></p>'+
+  '<p><label>Importér opgaver (JSON) – også skoleopgaver, Claude har lavet</label><input type="file" id="imp" accept=".json,application/json"></p><p id="impmsg"></p>'+
   '<div id="cloudsec">'+cloudPanel()+'</div><h3>7 · Data</h3><button class="btn" id="tidy">Ryd op i gamle detaljer (over 30 dage)</button><button class="btn quiet" id="wipe">Slet alle træningsdata</button><p class="note">Oprydning fjerner kun små detaljer (hvilke kort der var på skærmen). Søgninger, svar, hjælp og tænk-højt bliver gemt.</p>';
   $('pclose').onclick=closeParent; $('exjson').onclick=exportJSON; $('extxt').onclick=exportTXT;
   $('ai-save').onclick=function(){var ep=$('ai-ep').value.trim(),m=$('ai-model').value.trim(),k=$('ai-key').value.trim();
@@ -3409,6 +3460,7 @@ function adaptPanel(){
 function importTasks(e){
   var f=e.target.files[0]; if(!f) return; var r=new FileReader();
   r.onload=function(){var msg=$('impmsg');try{var j=JSON.parse(r.result), arr=Array.isArray(j)?j:j.tasks, ok=0, bad=[];
+    if(j&&j.schema===SK_SCHEMA){var rsk=skImport(j);save();log('school_imported',{ok:rsk.ok,bad:rsk.bad});msg.innerHTML='📚 Skoleopgaver importeret: '+rsk.ok+(rsk.bad.length?'<br>Afvist: '+esc(rsk.bad.join(' · ')):'');setTimeout(renderParent,1500);return;}
     if(!Array.isArray(arr)) throw new Error('Filen skal have en liste "tasks".');
     if(j.skills) Object.keys(j.skills).forEach(function(k){if(!SKILLS[k]) SKILLS[k]=j.skills[k];});
     arr.forEach(function(t){var e2=validTask(t); if(e2){bad.push((t&&t.id||'?')+': '+e2);return;}
@@ -3451,7 +3503,7 @@ function buildExport(){
     sessions:S.sessions,runs:S.runs.map(function(r){var o={};for(var k in r) if(k!=='aiChat') o[k]=r[k];o.startISO=iso(r.start);o.aiChat=r.aiChat;return o;}),
     events:S.events.map(function(e){var o={};for(var k in e) o[k]=e[k];o.iso=iso(e.t);return o;}),
     metrics:M,
-    louisWords:{aliases:S.aliases,deadTerms:S.deadTerms},drills:S.drills,rounds:S.rounds,teach:S.teach,plan:S.plan||null,adapt:S.adapt,signals:signals(),
+    louisWords:{aliases:S.aliases,deadTerms:S.deadTerms},drills:S.drills,rounds:S.rounds,teach:S.teach,signals:S.signals,schoolSets:(S.extraSets||[]).map(function(x){return {id:x.id,title:x.title,source:x.source,parts:x.parts.length};}),plan:S.plan||null,adapt:S.adapt,signals:signals(),
     transcript:S.events.filter(function(e){return e.type==='think';}).map(function(e){return {iso:iso(e.t),task:e.task,via:e.via,text:e.text};}),
     summaryDa:summary(M)};
 }
@@ -3487,7 +3539,7 @@ function exportTXT(){log('export',{kind:'txt'});download('louis-traening-resume-
 var CLOUD_DEFAULT=/*CLOUDCFG*/{"url": "https://fwqosqusalkzigztftyp.supabase.co", "key": "sb_publishable_cFtWxz3iayptqbaN9lZ7fw_Lh3m6Azt"}/*END*/;
 var CLOUDKEY='louisFP9traening.cloud';
 var CL={client:null,user:null,role:null,status:'off',lastSync:0,lastRemote:null,dirty:false,timer:null,busy:false,again:false,viewOnly:false,viewAt:null,err:''};
-var CLOUD_ARR=['sessions','events','runs','aliases','deadTerms','extraTasks','drills','rounds','teach','compactions'];
+var CLOUD_ARR=['sessions','events','runs','aliases','deadTerms','extraTasks','drills','rounds','teach','compactions','signals','extraSets'];
 var CLOUD_EVERY=90000, CLOUDBASE='louisFP9traening.cloudbase';
 // Fingerprints of the non-list parts (adapt, plan …) as they were at the last good sync.
 // They make the merge three-way: only the side that actually changed a part wins.
@@ -3693,7 +3745,575 @@ document.addEventListener('visibilitychange',function(){
 window.addEventListener('online',function(){if(CL.role==='student') cloudSync(false);});
 if(cloudReady()) cloudClient();
 
-window.TRAINING={cloud:{merge:function(a,b,c){return cloudMerge(a,b,c);},CL:function(){return CL;},state:function(){return S;},saveNow:function(){saveNow();},sync:function(i){return cloudSync(i);},afterLogin:function(){return cloudAfterLogin();},view:function(){return cloudView();},importText:function(t){return cloudImportText(t);},panel:function(){return cloudPanel();},login:function(){cloudLogin();}},ad:function(){return AD();},diagnose:function(rs){return diagnose(rs);},readAloud:function(){readAloud();},distractors:function(id){return drillDistractors(taskById(id));},startRound:function(m,k){startRound(m,k||null);},home:function(){homeScreen();},drillAnswer:function(c){drillAnswer(c,'test');},drill:function(){return DRILL;},round:function(){return ROUND;},buildExamFile:function(){return buildExamFile();},state:function(){return S;},metrics:metrics,buildExport:buildExport,summary:summary,current:function(){return {run:run,task:task&&task.id,ver:ver};},newTask:function(id){startRound('fri',null,taskById(id));},flushSearch:commitSearch};
+// ---------------- plan before calculating (v1.9) ----------------
+// For tasks with more than one step, Louis first makes a plan: what to find, which numbers matter,
+// and which steps in which order. Help works backwards from the goal. Plans fade once he is good at them.
+function rnd(lo,hi){return lo+Math.floor(Math.random()*(hi-lo+1));}
+var PL={};
+// ---- single tasks ----
+PL['hoodie-foer']=function(v){var up=/steget/.test(v.text);
+  return {goal:['Prisen før ændringen','Prisen nu','Hvor mange kr prisen er '+(up?'steget':'faldet')],
+    steps:['Find fremskrivningsfaktoren ('+(up?'1 + procenten':'1 − procenten')+')','Del prisen nu med faktoren'],
+    decoys:['Tag procenten af prisen nu','Gang prisen nu med faktoren'],
+    noise:function(){return 'Den blev solgt '+rnd(3,40)+' gange sidste måned.';}};};
+PL['skate-fald']=function(){return {goal:['Faldet i procent','Faldet i kroner','Prisen nu'],
+  steps:['Find faldet i kr (før − nu)','Del faldet med prisen før','Gang med 100'],
+  decoys:['Del faldet med prisen nu','Læg de to priser sammen'],
+  noise:function(){return 'Butikken har '+rnd(5,30)+' stk. på lager.';}};};
+PL['kasket-op-ned']=function(){return {goal:['Prisen efter begge ændringer','Prisen efter den første ændring','Hvor mange procent prisen ændrer sig i alt'],
+  steps:['Regn prisen efter den første ændring','Regn den anden ændring af den NYE pris'],
+  decoys:['Læg de to procenter sammen','Regn begge ændringer af startprisen'],
+  noise:function(){return 'Den fås i '+rnd(3,8)+' farver.';}};};
+PL['kaffe-haeldning']=function(){return {goal:['Hvor meget overskuddet stiger pr. ekstra stk.','Overskuddet i første kolonne','Det samlede overskud'],
+  steps:['Vælg to punkter fra tabellen','Find ændringen i y og ændringen i x','Del ændringen i y med ændringen i x'],
+  decoys:['Del overskuddet med antal solgte','Brug 1, 2, 3 som x']};};
+PL['aktier']=function(v){var m=/^(\S+) og (\S+) starter/.exec(v.text)||['','A','B'], a=m[1], b=m[2];
+  return {goal:['Antal aktier for '+b,'Antal aktier for '+a,'Antal aktier i alt'],
+    steps:['Kald '+b+'s aktier for x – skriv '+a+'s med x','Læg dem sammen, og sæt lig med det samlede antal','Løs ligningen'],
+    decoys:['Del det samlede antal med 2','Del det samlede antal med gange-tallet'],
+    noise:function(){return 'Webshoppen åbnede for '+rnd(2,9)+' uger siden.';}};};
+PL['jubilaeum']=function(){return {goal:['Butikkens alder nu','Alderen om nogle år','Alderen for nogle år siden'],
+  steps:['Kald alderen nu for x','Skriv begge alderne med x','Opstil ligningen og løs den'],
+  decoys:['Læg de to år-tal sammen','Gang kun x med tallet foran parentesen'],
+  noise:function(){return 'Der arbejder '+rnd(3,12)+' personer i butikken.';}};};
+PL['stand-budget']=function(){return {goal:['Det største antal, du kan købe','Hvor mange penge du har tilbage','Prisen for alle varerne'],
+  steps:['Træk lejen fra budgettet','Del resten med prisen for én','Rund NED til et helt tal'],
+  decoys:['Rund OP til et helt tal','Del hele budgettet med prisen for én'],
+  noise:function(){return 'Standen er åben i '+rnd(3,8)+' timer.';}};};
+PL['leverandoer']=function(){return {goal:['Antal stk., hvor prisen er ens','Prisen ved det antal','Hvilken leverandør der er billigst'],
+  steps:['Skriv en pris-forskrift for hver leverandør','Sæt de to udtryk lig hinanden','Løs ligningen'],
+  decoys:['Del den faste pris med A\'s pris pr. stk.','Læg de to priser pr. stk. sammen'],
+  noise:function(){return 'Levering tager '+rnd(2,7)+' dage.';}};};
+PL['baand-vandret']=function(){return {goal:['Den vandrette afstand','Båndets længde','Vinklen'],
+  steps:['Navngiv siderne: højden er modstående, vandret er hosliggende','Vælg tan – du har modstående og søger hosliggende','Regn højde ÷ tan(vinkel) med lommeregneren i grader'],
+  decoys:['Brug Pythagoras','Gang højden med tan(vinkel)'],
+  noise:function(){return 'Båndet kører '+rnd(2,4)+' m i sekundet.';}};};
+PL['cafe-middeltal']=function(){return {goal:['Gennemsnitligt køb pr. kunde','Det samlede antal kunder','Det mest almindelige køb'],
+  steps:['Find midtpunktet i hvert interval','Gang hvert midtpunkt med antal kunder, og læg sammen','Del med det samlede antal kunder'],
+  decoys:['Tag gennemsnittet af antal kunder','Brug venstre kant af intervallerne']};};
+PL['papkasse-liter']=function(){return {goal:['Rumfanget i liter','Rumfanget i cm³','Kassens overflade'],
+  steps:['Gang længde · bredde · højde (cm³)','Del med 1.000 for at få liter'],
+  decoys:['Læg de tre mål sammen','Del med 100'],
+  noise:function(){return 'Kassen vejer '+rnd(2,4)+',5 kg tom.';}};};
+PL['gulv-pris']=function(){return {goal:['Prisen for hele gulvet','Gulvets areal','Gulvets omkreds'],
+  steps:['Find arealet: længde · bredde','Gang arealet med prisen pr. m²'],
+  decoys:['Find omkredsen','Læg længde og bredde sammen'],
+  noise:function(){return 'Butikken har åbent '+rnd(5,7)+' dage om ugen.';}};};
+PL['ai-laan']=function(v){var m=/skylder du ([\d.,]+) kr/.exec(v.text);
+  return {goal:['Hele beløbet, du skylder til sidst','Kun renterne','Renten det første år'],
+    steps:['Find fremskrivningsfaktoren (1 + renten)','Opløft faktoren i antal år','Gang med lånet'],
+    decoys:['Gang renten med antal år, og læg til','Læg AI\'ens tal til lånet'],
+    skip:m?[m[1]]:[]};};
+PL['pyth-skaerm']=function(v){
+  if(/stige/i.test(v.text)) return {goal:['Hvor højt stigen når','Hvor langt foden er fra væggen','Stigens længde'],
+    steps:['Sæt stigen og afstanden i anden','Træk den korte fra den lange','Tag kvadratroden'],
+    decoys:['Læg siderne sammen uden at sætte i anden','Læg de to tal i anden sammen'],
+    noise:function(){return 'Den vejer '+rnd(6,15)+' kg.';}};
+  return {goal:['Den skrå længde (diagonalen)','Arealet','Omkredsen'],
+    steps:['Sæt de to sider i anden','Læg dem sammen','Tag kvadratroden'],
+    decoys:['Læg siderne sammen uden at sætte i anden','Gang de to sider'],
+    noise:function(){return 'Den kostede '+rnd(800,3000)+' kr.';}};};
+PL['cirkel-pizza']=function(v){
+  if(v.unit!=='cm²') return null;
+  return {goal:['Arealet','Omkredsen','Radius'],steps:['Find radius: diameter ÷ 2','Regn π · r²'],
+    decoys:['Regn π · diameter','Regn π · diameter²'],noise:function(){return 'Den koster '+rnd(65,120)+' kr.';}};};
+PL['cylinder-tank']=function(v){
+  if(v.unit==='mL') return {goal:['Rumfanget i mL','Rumfanget i liter','Arealet af bunden'],
+    steps:['Find radius: diameter ÷ 2','Regn π · r² · h (cm³)','Husk: 1 cm³ = 1 mL'],
+    decoys:['Regn omkredsen π · d','Gang diameteren med højden'],noise:function(){return 'Dåsen koster '+rnd(5,15)+' kr.';}};
+  return {goal:['Rumfanget i liter','Rumfanget i cm³','Arealet af bunden'],
+    steps:['Find radius: diameter ÷ 2','Regn rumfanget: π · r² · h (cm³)','Del med 1.000 for at få liter'],
+    decoys:['Regn omkredsen π · d','Gang diameteren med højden'],noise:function(){return 'Haven er '+rnd(80,300)+' m² stor.';}};};
+PL['median-koe']=function(v){
+  if(/variationsbredden/.test(v.text)) return {goal:['Variationsbredden','Medianen','Den største værdi'],
+    steps:['Find den største og den mindste værdi','Træk den mindste fra den største'],decoys:['Tag sidste minus første tal i tabellen','Sortér og tag det midterste']};
+  return {goal:['Medianen','Middeltallet','Variationsbredden'],
+    steps:['Sortér tallene fra mindst til størst','Tag det midterste tal (ved lige antal: gennemsnit af de to midterste)'],
+    decoys:['Læg alle tallene sammen, og del med antallet','Tag det midterste tal i tabellen, som de står']};};
+PL['eksp-foelgere']=function(v){
+  if(/mobil/.test(v.text)) return {goal:['Mobilens værdi efter nogle år','Hvor meget den har tabt i alt','Faldet det første år'],
+    steps:['Find fremskrivningsfaktoren (1 − procenten)','Opløft faktoren i antal år','Gang med prisen som ny'],
+    decoys:['Gang procenten med antal år','Træk det samme beløb fra hvert år'],noise:function(){return 'Den har '+rnd(3,9)+' kameraer.';}};
+  return {goal:['Antal følgere efter nogle måneder','Antal nye følgere','Væksten den første måned'],
+    steps:['Find fremskrivningsfaktoren (1 + procenten)','Opløft faktoren i antal måneder','Gang med startantallet'],
+    decoys:['Gang procenten med antal måneder','Læg det samme antal til hver måned'],noise:function(){return 'Butikken lægger '+rnd(2,6)+' opslag op om ugen.';}};};
+PL['maalestok-plan']=function(v){
+  if(v.unit==='km') return {goal:['Afstanden i virkeligheden','Afstanden på kortet','Målestokken'],
+    steps:['Gang kortets mål med målestokstallet (cm)','Del med 100.000 for at få km'],decoys:['Del kortets mål med målestokstallet','Del med 1.000'],
+    noise:function(){return 'Turen tager '+rnd(10,40)+' minutter på cykel.';}};
+  if(v.unit==='cm') return {goal:['Længden på tegningen','Længden i virkeligheden','Målestokken'],
+    steps:['Lav meter om til cm (· 100)','Del med målestokstallet'],decoys:['Gang med målestokstallet','Del meter med målestokstallet uden at lave om'],
+    noise:function(){return 'Butikken er '+rnd(3,8)+' m bred.';}};
+  return {goal:['Længden i virkeligheden','Længden på tegningen','Målestokken'],
+    steps:['Gang tegningens mål med målestokstallet (cm)','Del med 100 for at få meter'],decoys:['Del tegningens mål med målestokstallet','Del med 1.000'],
+    noise:function(){return 'Disken er '+rnd(60,110)+' cm høj.';}};};
+PL['skalering-kopi']=function(v){
+  if(v.unit==='L') return {goal:['Den nye kasses rumfang','Den nye kasses overflade','Hvor mange gange længderne bliver større'],
+    steps:['Find k: hvor mange gange længderne bliver','Rumfang ændres med k³ – find k³','Gang det gamle rumfang med k³'],decoys:['Gang med k','Gang med k²'],
+    noise:function(){return 'Den gamle kasse vejer '+rnd(2,6)+' kg.';}};
+  return {goal:['Prisen for den nye plakat','Den nye plakats areal','Hvor mange gange længderne bliver større'],
+    steps:['Find k: hvor mange gange længderne bliver','Areal ændres med k² – find k²','Gang den gamle pris med k²'],decoys:['Gang prisen med k','Gang prisen med k³'],
+    noise:function(){return 'Plakaten hænger i '+rnd(2,9)+' uger.';}};};
+// ---- parts of linked sets: numbers are picked from the shared intro too (relevance) ----
+PL['saet-webshop#b']=function(){return {goal:['Fortjenesten på én (uden moms)','Salgsprisen med moms','Momsen'],
+  steps:['Tag salgsprisen uden moms (svar a)','Træk indkøbsprisen fra'],decoys:['Træk indkøbsprisen fra prisen MED moms','Læg momsen til'],
+  must:['a',0],ok:[1]};};
+PL['saet-webshop#c']=function(){return {goal:['Den nye pris med moms','Rabatten i kr','Den nye pris uden moms'],
+  steps:['Find faktoren: 1 − rabat-procenten','Gang prisen med moms med faktoren'],decoys:['Træk procent-tallet fra som kroner','Brug prisen uden moms'],
+  must:[1,2]};};
+PL['saet-webshop#d']=function(){return {goal:['Det mindste antal, du skal sælge','Fortjenesten på en måned','Prisen pr. stk.'],
+  steps:['Tag fortjenesten pr. stk. (svar b)','Del den faste udgift med fortjenesten pr. stk.','Rund OP til et helt tal'],decoys:['Del med salgsprisen','Rund NED til et helt tal'],
+  must:[2,'b']};};
+PL['saet-lager#b']=function(){return {goal:['Rumfanget','Gulvarealet','Antal liter'],
+  steps:['Tag gulvarealet (svar a)','Gang med højden'],decoys:['Læg de tre mål sammen','Find overfladen'],must:[2,'a'],ok:[0,1]};};
+PL['saet-lager#c']=function(){return {goal:['Rumfanget i liter','Rumfanget i m³','Gulvarealet'],
+  steps:['Tag rumfanget i m³ (svar b)','Gang med 1.000 (1 m³ = 1.000 L)'],decoys:['Del med 1.000','Gang med 100'],must:['b'],ok:[0,1,2]};};
+PL['saet-lager#d']=function(){return {goal:['Rampens længde (den skrå side)','Lagerets højde','Den vandrette afstand'],
+  steps:['Sæt de to korte sider i anden','Læg dem sammen','Tag kvadratroden'],decoys:['Læg siderne sammen uden at sætte i anden','Brug lagerets højde'],must:[3,4]};};
+PL['saet-kaffe#a']=function(){return {goal:['Overskuddet den dag','Indtægten den dag','Antal kopper ved 0 kr overskud'],
+  steps:['Find overskud pr. kop: pris − udgift pr. kop','Gang med antal kopper','Træk den faste udgift fra'],decoys:['Gang kaffeprisen med antal kopper, og stop','Læg den faste udgift til'],
+  must:[0,1,2,3]};};
+PL['saet-kaffe#b']=function(){return {goal:['Antal kopper, hvor overskuddet er 0','Overskuddet ved 0 kopper','Den faste udgift'],
+  steps:['Find overskud pr. kop: pris − udgift pr. kop','Del den faste udgift med overskuddet pr. kop'],decoys:['Del den faste udgift med kaffeprisen','Del den faste udgift med udgiften pr. kop'],
+  must:[0,1,2]};};
+PL['saet-kaffe#c']=function(){return {goal:['Middeltallet af solgte kopper','Medianen','Overskuddet'],
+  steps:['Læg de 5 dages tal sammen','Del med 5'],decoys:['Find det midterste tal','Træk den mindste fra den største'],must:[3]};};
+PL['saet-kaffe#d']=function(){return {goal:['Overskuddet en gennemsnitlig dag','Middeltallet','Overskuddet ved 0 kopper'],
+  steps:['Tag middeltallet (svar c)','Find overskud pr. kop, og gang med middeltallet','Træk den faste udgift fra'],decoys:['Gang kaffeprisen med middeltallet, og stop','Brug svaret fra b)'],
+  must:[0,1,2,'c']};};
+PL['saet-opsparing#a']=function(){return {goal:['Beløbet på kontoen efter nogle år','Renterne i alt','Prisen om nogle år'],
+  steps:['Find fremskrivningsfaktoren (1 + renten)','Opløft faktoren i antal år','Gang med beløbet på kontoen'],decoys:['Gang renten med antal år','Brug prisen på tingen'],
+  must:[0,2,3]};};
+PL['saet-opsparing#b']=function(){return {goal:['Prisen om nogle år','Prisen i dag','Opsparingen om nogle år'],
+  steps:['Find fremskrivningsfaktoren (1 + stigningen)','Opløft faktoren i antal år','Gang med prisen i dag'],decoys:['Gang stigningen med antal år','Brug beløbet på kontoen'],
+  must:[1,2,3]};};
+PL['saet-opsparing#c']=function(){return {goal:['Hvor mange procent af prisen, du har sparet op','Hvor mange kr du mangler','Renten'],
+  steps:['Del din opsparing (svar a) med den nye pris (svar b)','Gang med 100'],decoys:['Del prisen med opsparingen','Brug tallene fra i dag'],
+  must:['a','b']};};
+
+function planTokens(s){
+  var re=/1 : \d{1,3}(?:\.\d{3})*|\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?/g, out=[], m; s=String(s||'').replace(/\*\*/g,'');
+  while((m=re.exec(s))) out.push(m[0]);
+  return out;
+}
+function uniq(a){var o=[];a.forEach(function(x){if(o.indexOf(x)<0) o.push(x);});return o;}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
+// Build the plan for this task and (if extra information is used) add it to the story text.
+function planPrep(t,v){
+  var DEF=t&&(PL[t.id]||(v&&v.plan?function(){return JSON.parse(JSON.stringify(v.plan));}:null));
+  if(!t||t.type!=='num'||!DEF) return null;
+  if(v._plan!==undefined) return v._plan;
+  var p=null; try{p=DEF(v);}catch(e){p=null;}
+  if(!p||!p.steps||p.steps.length<2){v._plan=null;return null;}
+  var isPart=!!v.context, toks=planTokens((isPart?v.context.intro+'\n':'')+v.text), chips=null, must=[], ok=[];
+  if(isPart){
+    var prev=LET.slice(0,v.partIdx).split('');
+    var mm=function(x){return typeof x==='number'?toks[x]:x;};
+    must=uniq((p.must||[]).map(mm).filter(Boolean)); ok=uniq((p.ok||[]).map(mm).filter(Boolean));
+    chips=uniq(toks).concat(prev);
+    if(!must.length) chips=null;
+  } else {
+    var skip=p.skip||[];
+    must=uniq(toks.filter(function(x){return skip.indexOf(x)<0;}));
+    var noiseT=[];
+    if(p.noise&&must.length){
+      var ns=null;
+      for(var i=0;i<6&&!ns;i++){var c=p.noise(), ct=planTokens(c);if(ct.length&&!ct.some(function(x){return toks.indexOf(x)>=0;})) {ns=c;noiseT=ct;}}
+      if(ns){var k=v.text.indexOf('\n\n'); v.text=k>0?v.text.slice(0,k)+'\n'+ns+v.text.slice(k):ns+'\n'+v.text; p.noiseText=ns;}
+    }
+    if(noiseT.length||skip.length) chips=uniq(toks.concat(noiseT));
+  }
+  var plan={goal:p.goal[0],goals:shuffle(p.goal),steps:p.steps.slice(),pool:shuffle(p.steps.concat(p.decoys||[])),chips:chips?shuffle(chips):null,must:must,ok:ok,noise:p.noiseText||null};
+  v._plan=plan; return plan;
+}
+function chipLabel(c){return /^[a-h]$/.test(c)?'Dit svar fra '+c+')':c;}
+function planHistory(id){return S.runs.filter(function(r){return r.task===id&&r.plan&&r.plan.done&&!r.plan.optional;});}
+function planWanted(t,p){
+  if(!p||!ROUND) return false;
+  var m=ROUND.mode;
+  if(m==='proeve'||m==='drill') return false;
+  if(m==='plan') return true;
+  var h=planHistory(t.id).slice(-2);
+  if(h.length===2&&h.every(function(r){return r.plan.clean;})) return false; // he can plan this one – plan becomes optional
+  if(m==='saet'||m==='skole') return true;
+  var M=metrics().perSkill;
+  return (t.skills||[]).some(function(k){return !M[k]||M[k].runs<3||M[k].mastery<0.8;});
+}
+var PLS=null; // plan state for the task on screen
+function planStart(optional){
+  var p=ver._plan; if(!p||!run||run.end) return;
+  PLS={step:'goal',chain:[],back:0,optional:!!optional};
+  run.plan={t0:now(),goal1:null,nums1:null,chain1:null,back:0,done:false,clean:false,optional:!!optional,noise:p.noise};
+  var w=$('work'); if(w) w.classList.add('hide');
+  var box=$('planbox'); if(!box){box=document.createElement('div');box.id='planbox';box.className='planbox pop';w.parentNode.insertBefore(box,w);}
+  box.innerHTML='<div id="plin"></div>'+(ROUND&&ROUND.mode==='plan'?'':'<button class="tbtn quietb plskip" id="plskip">Spring planen over</button>');
+  $('plskip')&&($('plskip').onclick=planSkip);
+  var op=$('optplan'); if(op) op.remove();
+  setStep(0); log('plan_start',{task:task.id,optional:!!optional,noise:!!p.noise});
+  planMask();
+  planGoal();
+}
+// Read the story without numbers first: forces him to understand the situation before calculating
+var NUMRE=/1 : \d{1,3}(?:\.\d{3})*|\d{1,3}(?:\.\d{3})+(?:,\d+)?|\d+(?:,\d+)?/g;
+function planMask(){
+  PLS.masked=[];
+  [].forEach.call(P.querySelectorAll('.tcard .task-text, .ctx .ctxt'),function(el){
+    PLS.masked.push([el,el.innerHTML]);
+    var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT,null), nodes=[], n;
+    while((n=tw.nextNode())) nodes.push(n);
+    nodes.forEach(function(tn){
+      var s=tn.nodeValue; NUMRE.lastIndex=0; if(!NUMRE.test(s)) return; NUMRE.lastIndex=0;
+      var span=document.createElement('span');
+      span.innerHTML=esc(s).replace(NUMRE,'<span class="nmask" title="tal">▢▢</span>');
+      tn.parentNode.replaceChild(span,tn);
+    });
+  });
+  if(PLS.masked.length) run.plan.masked=true;
+}
+function planUnmask(){
+  if(!PLS||!PLS.masked) return;
+  PLS.masked.forEach(function(x){if(document.body.contains(x[0])) x[0].innerHTML=x[1];});
+  PLS.masked=null;
+}
+// "What will the answer look like?" – unit and type of the answer
+var FORMS={kr:'Et beløb i kr',pct:'En procent (%)',count:'Et helt antal',L:'Et antal liter',mL:'Et antal mL',cm3:'Et rumfang i cm³',m3:'Et rumfang i m³',
+  m2:'Et areal i m²',cm2:'Et areal i cm²',m:'En længde i m',cm:'En længde i cm',km:'En længde i km',deg:'En vinkel i grader',year:'Et antal år',min:'Et antal minutter',rate:'Et beløb pr. stk.',speed:'En fart i km/t',g:'En vægt i gram',cl:'Et antal cl'};
+var CONFUSE={kr:['pct','count'],pct:['kr','count'],count:['kr','pct'],L:['cm3','mL'],mL:['L','cm3'],cm3:['L','m3'],m3:['m2','L'],m2:['m','m3'],cm2:['cm','cm3'],
+  m:['m2','cm'],cm:['cm2','m'],km:['m','cm'],deg:['m','pct'],year:['count','kr'],min:['count','pct'],rate:['kr','count'],speed:['km','min'],g:['kr','count'],cl:['L','mL']};
+function formKey(u){u=String(u||'').trim();
+  if(u==='km/t') return 'speed';
+  if(/pr\./.test(u)) return 'rate';
+  return ({'kr':'kr','%':'pct','L':'L','mL':'mL','cm³':'cm3','m³':'m3','m²':'m2','cm²':'cm2','m':'m','cm':'cm','km':'km','°':'deg','år':'year','min':'min','g':'g','cl':'cl','l':'L','ml':'mL'})[u]||'count';}
+function formOptions(unit){var k=formKey(unit);return {right:FORMS[k],opts:shuffle([k].concat(CONFUSE[k]).map(function(x){return FORMS[x];}))};}
+function planHead(n,total,title){return '<div class="plhead"><span class="plstep">Plan '+n+' af '+total+'</span><b>'+title+'</b></div>';}
+function planTotal(){return ver._plan.chips?3:2;}
+function planGoal(){
+  var p=ver._plan, box=$('plin');
+  box.innerHTML=planHead(1,planTotal(),'🎯 Hvad skal du finde?')+'<p class="plsub">'+(PLS.masked&&PLS.masked.length?'Tallene er skjult ▢▢ – læs først, <b>hvad der sker</b>. ':'')+'Spørgsmålet står til sidst.</p><div class="choices">'+
+    p.goals.map(function(g){return '<button class="btn" data-goal="'+esc(g)+'">'+esc(g)+'</button>';}).join('')+'</div><div class="plfb" id="plfb" aria-live="polite"></div>';
+  [].forEach.call(box.querySelectorAll('[data-goal]'),function(b){b.onclick=function(){
+    var g=b.getAttribute('data-goal'), ok=g===p.goal;
+    if(run.plan.goal1==null) run.plan.goal1=ok;
+    if(ok){b.classList.add('right');run.plan.goalText=g;log('plan_goal',{ok:true});setTimeout(planForm,450);}
+    else{b.classList.add('wrongc');b.disabled=true;planFb('Ikke helt. Læs det sidste spørgsmål igen – hvad spørger det om?');log('plan_goal',{ok:false,chose:g});}
+    save();
+  };});
+  autoSpeak('Lav en plan, før du regner. Hvad skal du finde?','plan');
+}
+function planForm(){
+  var p=ver._plan, box=$('plin'), F=formOptions(ver.unit);
+  box.innerHTML=planHead(1,planTotal(),'📏 Hvad bliver svaret?')+'<p class="plsub">Mål: <b>'+esc(p.goal)+'</b>. Hvordan ser svaret ud?</p><div class="choices">'+
+    F.opts.map(function(o){return '<button class="btn" data-form="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div><div class="plfb" id="plfb" aria-live="polite"></div>';
+  [].forEach.call(box.querySelectorAll('[data-form]'),function(b){b.onclick=function(){
+    var o=b.getAttribute('data-form'), ok=o===F.right;
+    if(run.plan.form1==null) run.plan.form1=ok;
+    log('plan_form',{ok:ok,chose:o,right:F.right});
+    if(ok){b.classList.add('right');planFb2('✓ Ja – svaret bliver '+F.right.charAt(0).toLowerCase()+F.right.slice(1)+'.');setTimeout(p.chips?planNums:planChain,700);}
+    else{b.classList.add('wrongc');b.disabled=true;planFb('Ikke helt. Se på spørgsmålet: står der noget om enheden – kr, %, liter, m² …?');}
+    save();
+  };});
+  autoSpeak('Hvad bliver svaret? Hvordan ser det ud?','plan');
+}
+function planFb(t){var e=$('plfb');if(e){e.textContent=t;e.className='plfb no shake';}autoSpeak(t,'plan');}
+function planNums(){
+  var p=ver._plan, box=$('plin'), sel={};
+  PLS.step='nums'; planUnmask();
+  box.innerHTML=planHead(2,3,'🔢 Hvilke tal skal du bruge?')+'<p class="plsub">Tryk på dem, du skal bruge. Der kan være tal, du <b>ikke</b> skal bruge.</p><div class="numchips">'+
+    p.chips.map(function(c){return '<button class="tbtn nchip" data-num="'+esc(c)+'" aria-pressed="false">'+esc(chipLabel(c))+'</button>';}).join('')+'</div>'+
+    '<div class="tools"><button class="btn go" id="plnums">Tjek tallene ✓</button></div><div class="plfb" id="plfb" aria-live="polite"></div>';
+  var tries=0;
+  [].forEach.call(box.querySelectorAll('[data-num]'),function(b){b.onclick=function(){var c=b.getAttribute('data-num');sel[c]=!sel[c];b.classList.toggle('on',sel[c]);b.setAttribute('aria-pressed',String(!!sel[c]));};});
+  $('plnums').onclick=function(){
+    var chosen=Object.keys(sel).filter(function(c){return sel[c];});
+    var missing=p.must.filter(function(c){return chosen.indexOf(c)<0;}), extra=chosen.filter(function(c){return p.must.indexOf(c)<0&&p.ok.indexOf(c)<0;});
+    var ok=!missing.length&&!extra.length; tries++;
+    if(run.plan.nums1==null) run.plan.nums1=ok;
+    log('plan_nums',{ok:ok,missing:missing.length,extra:extra.length,noiseChosen:p.noise?extra.length>0:null});
+    if(ok){[].forEach.call(box.querySelectorAll('[data-num]'),function(b){b.disabled=true;});planFb2('✓ Præcis de tal.');setTimeout(planChain,600);save();return;}
+    if(tries>=2){
+      [].forEach.call(box.querySelectorAll('[data-num]'),function(b){var c=b.getAttribute('data-num'),need=p.must.indexOf(c)>=0||(p.ok.indexOf(c)>=0&&sel[c]);b.disabled=true;b.classList.toggle('on',need);b.classList.toggle('skipn',!need);});
+      planFb2('Her er tallene, du skal bruge. De overstregede skal du ikke bruge.');$('plnums').textContent='Videre →';$('plnums').onclick=planChain;save();return;}
+    planFb(extra.length&&missing.length?'Du mangler et tal – og ét af dem skal du ikke bruge.':extra.length?'Ét af tallene skal du ikke bruge. Spørg: hjælper det mig med at finde svaret?':'Du mangler et tal. Hvad skal du bruge for at finde '+p.goal.toLowerCase()+'?');
+    save();
+  };
+  autoSpeak('Hvilke tal skal du bruge?','plan');
+}
+function planFb2(t){var e=$('plfb');if(e){e.textContent=t;e.className='plfb ok';}autoSpeak(t,'plan');}
+function planChain(){
+  var p=ver._plan, box=$('plin'), N=p.steps.length;
+  PLS.step='chain'; planUnmask();
+  function draw(){
+    var slots='';for(var i=0;i<N;i++){var s=PLS.chain[i], locked=i>=N-PLS.back;slots+='<li class="slot'+(s?' full':'')+(locked?' locked':'')+'">'+(s?'<button class="tbtn sch" data-rm="'+i+'"'+(locked?' disabled':'')+'>'+esc(s)+(locked?' 🔒':' ✕')+'</button>':'<span class="slotph">Trin '+(i+1)+'</span>')+'</li>';}
+    var used=PLS.chain.filter(Boolean);
+    box.innerHTML=planHead(planTotal(),planTotal(),'🧭 Hvilke trin – i hvilken rækkefølge?')+'<p class="plsub">Mål: <b>'+esc(p.goal)+'</b>. Tryk på trinene i den rækkefølge, du vil regne dem.</p>'+
+      '<ol class="slots">'+slots+'</ol><div class="pool">'+p.pool.filter(function(s){return used.indexOf(s)<0;}).map(function(s){return '<button class="tbtn pstep" data-step="'+esc(s)+'">'+esc(s)+'</button>';}).join('')+'</div>'+
+      '<div class="tools"><button class="btn go" id="plchk"'+(used.length<N?' disabled':'')+'>Tjek planen ✓</button>'+(PLS.back<N-1?'<button class="tbtn help" id="plback">🔙 Arbejd baglæns</button>':'')+'</div><div class="plfb" id="plfb" aria-live="polite"></div>';
+    [].forEach.call(box.querySelectorAll('[data-step]'),function(b){b.onclick=function(){var s=b.getAttribute('data-step');for(var i=0;i<N-PLS.back;i++) if(!PLS.chain[i]){PLS.chain[i]=s;break;}draw();};});
+    [].forEach.call(box.querySelectorAll('[data-rm]'),function(b){b.onclick=function(){PLS.chain[+b.getAttribute('data-rm')]=null;draw();};});
+    var bk=$('plback'); if(bk) bk.onclick=planBack;
+    $('plchk').onclick=planCheck;
+  }
+  PLS.draw=draw; draw();
+  autoSpeak('Hvilke trin skal du bruge, og i hvilken rækkefølge? Målet er: '+p.goal+'.','plan');
+}
+// Work backwards: reveal the LAST missing step first ("what do you need right before the answer?")
+function planBack(){
+  var p=ver._plan, N=p.steps.length; if(PLS.back>=N-1) return;
+  PLS.back++; run.plan.back=PLS.back;
+  var i=N-PLS.back, s=p.steps[i];
+  for(var j=0;j<N;j++) if(PLS.chain[j]===s) PLS.chain[j]=null;
+  PLS.chain[i]=s;
+  var q=PLS.back===1?'Hvad skal du gøre lige til sidst for at få '+p.goal.toLowerCase()+'?':'Og hvad skal du have, før du kan gøre det?';
+  log('plan_back',{level:PLS.back}); save(); PLS.draw();
+  var e=$('plfb'); if(e){e.innerHTML='<b>🔙 '+esc(q)+'</b><br>→ '+esc(s);e.className='plfb tip';}
+  autoSpeak(q+' '+s,'plan');
+}
+function planCheck(){
+  var p=ver._plan, N=p.steps.length, firstBad=-1;
+  for(var i=0;i<N;i++) if(PLS.chain[i]!==p.steps[i]){firstBad=i;break;}
+  var ok=firstBad<0;
+  if(run.plan.chain1==null) run.plan.chain1=ok&&!PLS.back;
+  log('plan_chain',{ok:ok,firstBad:firstBad,back:PLS.back});
+  if(ok) return planDone();
+  var bad=PLS.chain[firstBad], isDecoy=p.steps.indexOf(bad)<0;
+  PLS.tries=(PLS.tries||0)+1;
+  if(PLS.tries>=3){PLS.chain=p.steps.slice();PLS.back=N-1;PLS.draw();planFb2('Her er planen. Læs den igen, og tryk Videre.');var c=$('plchk');c.disabled=false;c.textContent='Videre →';c.onclick=planDone;save();return;}
+  planFb(isDecoy?'Trin '+(firstBad+1)+' hører ikke med i planen. Tryk på det for at fjerne det.':'Rækkefølgen er ikke helt rigtig ved trin '+(firstBad+1)+'. Hvad skal du have regnet, før du kan gøre det?');
+  save();
+}
+function planDone(){
+  var p=ver._plan;
+  run.plan.done=true; run.plan.ms=now()-run.plan.t0;
+  run.plan.clean=!!(run.plan.goal1&&run.plan.form1!==false&&run.plan.nums1!==false&&run.plan.chain1&&!run.plan.back);
+  log('plan_done',{clean:run.plan.clean,ms:run.plan.ms,back:run.plan.back,goal1:run.plan.goal1,nums1:run.plan.nums1,chain1:run.plan.chain1});
+  saveNow();
+  var box=$('planbox'), w=$('work');
+  if(ROUND&&ROUND.mode==='plan'){
+    refreshDotsPlan();
+    box.innerHTML='<div class="win pop"><div class="winhead">'+(run.plan.clean?'✓ Stærk plan!':'✓ Planen er klar')+'</div><div class="winsub">'+(run.plan.clean?'Mål, tal og trin – alt rigtigt i første forsøg.':'Næste gang kan du måske klare den uden hjælp.')+'</div></div>'+myPlanHtml(p,false)+
+      '<div class="tools"><button class="btn big go" id="plnext">'+(ROUND.items.length>=ROUND.n?'Se din runde →':'Næste plan →')+'</button><button class="tbtn" id="plcalc">✏️ Regn den også</button></div>';
+    $('plnext').onclick=function(){endRun('plan');nextRoundTask();};
+    $('plcalc').onclick=function(){box.remove();w.classList.remove('hide');w.insertAdjacentHTML('afterbegin',myPlanHtml(p,true));setStep(run.firstRelevantMs?2:1);};
+    $('plnext').focus(); autoSpeak(run.plan.clean?'Stærk plan!':'Planen er klar.','plan');
+    return;
+  }
+  box.remove(); w.classList.remove('hide');
+  w.insertAdjacentHTML('afterbegin',myPlanHtml(p,true));
+  setStep(run.firstRelevantMs?2:1);
+  toast(run.plan.clean?'Stærk plan! Nu kan du regne. ✓':'Planen er klar. Nu kan du regne.');
+  var a=$('ans'); if(a) a.focus({preventScroll:true});
+}
+function planSkip(){
+  if(!run||!run.plan) return;
+  planUnmask(); run.plan.skipped=true; run.plan.done=false; log('plan_skip',{step:PLS&&PLS.step}); save();
+  var box=$('planbox'), w=$('work'); if(box) box.remove(); if(w) w.classList.remove('hide');
+  setStep(run.firstRelevantMs?2:1);
+}
+function refreshDotsPlan(){if(typeof refreshDots==='function') refreshDots();}
+function myPlanHtml(p,ticks){
+  return '<div class="myplan"><b>🧭 Din plan</b> <span class="mpgoal">→ '+esc(p.goal)+'</span><ol>'+p.steps.map(function(s,i){return '<li>'+(ticks?'<label><input type="checkbox" data-tick="'+i+'"> '+esc(s)+'</label>':esc(s))+'</li>';}).join('')+'</ol></div>';
+}
+// In Plan-træning every task must have a plan: pick a seed whose variant has 2+ steps
+function planSeed(t){
+  for(var i=0;i<40;i++){var sd=(Math.random()*4294967296)>>>0, v=TRAINGEN.make(t.id,sd,t.type), p=null;
+    try{p=PL[t.id](v);}catch(e){} if(p&&p.steps&&p.steps.length>=2) return sd;}
+  return (Math.random()*4294967296)>>>0;
+}
+function pickPlanTask(exclude){
+  var cand=allTasks().filter(function(t){return t.type==='num'&&PL[t.id]&&window.TRAINGEN&&TRAINGEN.has(t.id)&&exclude.indexOf(t.id)<0;});
+  if(!cand.length) return pickNext(exclude);
+  var w=cand.map(function(t){var h=planHistory(t.id).slice(-3), bad=h.filter(function(r){return !r.plan.clean;}).length;return 1+bad*1.5+(h.length?0:1);});
+  var s=w.reduce(function(a,b){return a+b;},0), r=Math.random()*s;
+  for(var i=0;i<cand.length;i++){r-=w[i];if(r<=0) return cand[i];}
+  return cand[cand.length-1];
+}
+function planStats(rs){
+  var ps=rs.filter(function(r){return r.plan&&r.plan.done;});
+  return {n:ps.length,clean:ps.filter(function(r){return r.plan.clean;}).length,goal:ps.filter(function(r){return r.plan.goal1;}).length,form:ps.filter(function(r){return r.plan.form1!==false;}).length,
+    nums:ps.filter(function(r){return r.plan.nums1===true;}).length,numsN:ps.filter(function(r){return r.plan.nums1!=null;}).length,
+    chain:ps.filter(function(r){return r.plan.chain1;}).length,back:ps.filter(function(r){return r.plan.back;}).length};
+}
+function planCard(rs,mode){
+  var st=planStats(rs); if(!st.n) return '';
+  var weak=[];
+  if(st.goal<st.n) weak.push('at se, hvad der bliver spurgt om');
+  if(st.form<st.n) weak.push('at forudsige, hvordan svaret ser ud (enheden)');
+  if(st.numsN&&st.nums<st.numsN) weak.push('at sortere tal fra, du ikke skal bruge');
+  if(st.chain<st.n) weak.push('rækkefølgen af trinene');
+  return '<div class="diag plancard"><h3>🧭 Dine planer</h3><p>'+st.clean+' af '+st.n+' planer rigtige i første forsøg'+(st.back?' · baglæns-hjælp '+st.back+' '+(st.back===1?'gang':'gange'):'')+'.</p>'+
+    (weak.length?'<p class="diag-sub">Det kan blive bedre: '+esc(weak.join(', '))+'.</p>'+(mode!=='plan'?'<button class="btn go" id="goplan">Øv planer (ca. 4 min) ▶</button>':''):'<p class="diag-sub">Du planlægger som en, der er klar til prøven. 💪</p>')+'</div>';
+}
+function planParentLine(){
+  var st=planStats(S.runs); if(!st.n) return signalParentLine();
+  return '<br><b>Planer (før regning):</b> '+st.clean+' af '+st.n+' rigtige i første forsøg · mål '+st.goal+'/'+st.n+' · svarets form '+st.form+'/'+st.n+' · tal '+st.nums+'/'+st.numsN+' · rækkefølge '+st.chain+'/'+st.n+' · brugte baglæns-hjælp '+st.back+signalParentLine();
+}
+
+// One-time "what's new" card, so the plan step never appears unexplained
+function newsCard(){
+  if(PREF.news19||!(S.rounds||[]).length) return '';
+  return '<div class="intro news" id="news19"><b>🆕 Nyt: Lav en plan, før du regner 🧭</b>'+
+    '<p>Ved opgaver med flere trin laver du først en plan med 3 hurtige tryk:</p><ol><li>Hvad skal du finde?</li><li>Hvilke tal skal du bruge? (nogle er snydetal)</li><li>Hvilke trin – i hvilken rækkefølge?</li></ol>'+
+    '<p>Sidder du fast, så tryk <b>🔙 Arbejd baglæns</b>. Når du er god til en slags opgave, forsvinder planen af sig selv.</p>'+
+    '<div class="tools"><button class="btn go" id="newstry">Prøv Plan-træning (4 min) ▶</button><button class="tbtn quietb" id="newslater">Senere</button></div></div>';
+}
+function bindNews(){
+  var t=$('newstry'), l=$('newslater');
+  if(t) t.onclick=function(){PREF.news19=true;savePref();log('news_seen',{v:'1.9',action:'try'});startRound('plan');};
+  if(l) l.onclick=function(){PREF.news19=true;savePref();log('news_seen',{v:'1.9',action:'later'});var c=$('news19');if(c) c.remove();};
+  if($('news19')) autoSpeak('Nyt: Lav en plan, før du regner.','news');
+}
+
+// ---- Signalord: the small words that change the calculation (3 cards inside each Plan-træning) ----
+var SIGNALS=[
+ {w:'mindst',s:'Hvor mange skal du **mindst** sælge for at tjene det hjem?',a:'Rund OP til et helt tal',d:['Rund NED til et helt tal','Tag gennemsnittet'],why:'"Mindst" = du skal nå helt op. 39,2 bliver til 40.'},
+ {w:'højst',s:'Hvor mange kasser kan du **højst** købe for 500 kr?',a:'Rund NED til et helt tal',d:['Rund OP til et helt tal','Læg 1 til svaret'],why:'"Højst" = du må ikke bruge for meget. 12,8 bliver til 12.'},
+ {w:'før',s:'Jakken koster nu 600 kr efter 20 % rabat. Hvad kostede den **før**?',a:'Regn baglæns: del med 0,80',d:['Læg 20 % af 600 kr til','Gang 600 med 0,80'],why:'Rabatten er regnet af den GAMLE pris. Baglæns = del med faktoren.'},
+ {w:'uden moms',s:'Varen koster 500 kr med moms. Hvad er prisen **uden moms**?',a:'Del prisen med 1,25',d:['Træk 25 % fra prisen','Gang prisen med 1,25'],why:'Momsen er lagt OVENI. Baglæns: ÷ 1,25.'},
+ {w:'med moms',s:'Varen koster 400 kr uden moms. Hvad koster den **med moms**?',a:'Gang med 1,25',d:['Del med 1,25','Læg 25 kr til'],why:'Med moms = 25 % oveni: · 1,25.'},
+ {w:'i alt',s:'Hvor mange kr bruger I **i alt**?',a:'Læg alle beløbene sammen',d:['Tag det største beløb','Find gennemsnittet'],why:'"I alt" = det hele lagt sammen.'},
+ {w:'pr.',s:'5 kg æbler koster 60 kr. Hvad koster de **pr.** kg?',a:'Del prisen med antal kg',d:['Gang prisen med antal kg','Træk 5 fra 60'],why:'"Pr. kg" = for ét kg. 60 ÷ 5.'},
+ {w:'gennemsnit',s:'Hvad er det **gennemsnitlige** antal kunder pr. dag?',a:'Summen ÷ antal dage',d:['Det midterste tal','Største − mindste'],why:'Gennemsnit = middeltal = summen ÷ antallet.'},
+ {w:'median',s:'Find **medianen** af ventetiderne.',a:'Sortér – og tag det midterste',d:['Summen ÷ antallet','Største − mindste'],why:'Medianen er det midterste tal, når tallene er sorteret.'},
+ {w:'forskel',s:'Hvad er **forskellen** på de to priser?',a:'Træk den mindste fra den største',d:['Læg dem sammen','Del den ene med den anden'],why:'Forskel = minus.'},
+ {w:'procent',s:'Hvor mange **procent** af eleverne cykler?',a:'Del ÷ hele · 100',d:['Hele ÷ del','Del ÷ hele (og stop)'],why:'Procent = del ÷ hele · 100.'},
+ {w:'hvert år',s:'Beløbet vokser med 5 % **hvert år** i 4 år.',a:'Gang med 1,05 fire gange: 1,05⁴',d:['Læg 5 % af startbeløbet til 4 gange','Gang med 1,20 (4 · 5 %)'],why:'Samme % hver gang = renters rente: faktoren i en potens.'},
+ {w:'dobbelt så mange',s:'Emma har **dobbelt så mange** aktier som Noah.',a:'Emma = 2 · Noah',d:['Noah = 2 · Emma','Emma = Noah + 2'],why:'Den, der har "dobbelt så mange", er den store: Emma = 2 · Noah.'},
+ {w:'tilbage',s:'Du har 500 kr og køber for 320 kr. Hvor meget har du **tilbage**?',a:'Træk det brugte fra',d:['Læg det brugte til','Del 500 med 320'],why:'Tilbage = start − brugt.'},
+ {w:'hele vejen rundt',s:'Du vil sætte en liste **hele vejen rundt** om bordet.',a:'Omkreds',d:['Areal','Rumfang'],why:'Rundt om kanten = omkreds.'},
+ {w:'kan der være i',s:'Hvor meget vand **kan der være i** tønden?',a:'Rumfang',d:['Areal','Omkreds'],why:'Det, der kan være INDENI, er rumfang.'},
+ {w:'skråt over',s:'Hvor langt er der **skråt over** banen fra hjørne til hjørne?',a:'Pythagoras',d:['Læg siderne sammen','Areal = l · b'],why:'Skråt over et rektangel = den lange side i en retvinklet trekant.'},
+ {w:'chancen for',s:'Hvad er **chancen for** at vinde?',a:'Gunstige ÷ mulige',d:['Mulige ÷ gunstige','Gunstige − mulige'],why:'Sandsynlighed = gunstige ÷ mulige.'}
+];
+var SIG=null;
+function pickSignal(){
+  var used=(ROUND.items||[]).filter(function(i){return i.signal;}).map(function(i){return i.word;});
+  var hist=S.signals||[], c=SIGNALS.filter(function(x){return used.indexOf(x.w)<0;});
+  var wts=c.map(function(x){var h=hist.filter(function(r){return r.word===x.w;}).slice(-3);return h.length?1+3*h.filter(function(r){return !r.ok;}).length:2;});
+  var s=wts.reduce(function(a,b){return a+b;},0), r=Math.random()*s;
+  for(var i=0;i<c.length;i++){r-=wts[i];if(r<=0) return c[i];}
+  return c[c.length-1];
+}
+function signalItem(){
+  stopSpeak(); if(run&&!run.end) endRun('plan');
+  var x=pickSignal(), opts=shuffle([x.a].concat(x.d));
+  SIG={x:x,start:now(),done:false};
+  ROUND.items.push({task:'signal:'+x.w,drill:true,signal:true,word:x.w,ok:null});
+  P.innerHTML=roundBar()+'<p class="kicker">🔤 Signalord – ét lille ord kan ændre hele regnestykket</p>'+
+    '<div class="tcard"><button class="ibtn spk" id="read" aria-label="Læs op">🔊</button><p class="task-text">'+md(x.s)+'</p></div>'+
+    '<p class="plsub"><b>Hvad betyder "'+esc(x.w)+'" for, hvordan du regner?</b></p><div class="choices">'+opts.map(function(o){return '<button class="btn" data-sig="'+esc(o)+'">'+esc(o)+'</button>';}).join('')+'</div>'+
+    '<div class="fb" id="fb" role="status" aria-live="polite"></div>';
+  bindRoundBar(); P.scrollTop=0; setTab('task');
+  $('read').onclick=function(){speak(x.s.replace(/\*\*/g,''),'signal');};
+  [].forEach.call(P.querySelectorAll('[data-sig]'),function(b){b.onclick=function(){signalAnswer(b.getAttribute('data-sig'),b);};});
+  autoSpeak(x.s.replace(/\*\*/g,'')+' Hvad betyder '+x.w+'?','signal');
+}
+function signalAnswer(o,btn){
+  if(!SIG||SIG.done||!ROUND) return; SIG.done=true;
+  var x=SIG.x, ok=o===x.a, it=ROUND.items[ROUND.items.length-1];
+  it.ok=ok;
+  if(!Array.isArray(S.signals)) S.signals=[];
+  var rec={t:now(),session:SESSION.id,round:ROUND.id,word:x.w,chosen:o,ok:ok,ms:now()-SIG.start};
+  S.signals.push(rec); log('signal',rec);
+  [].forEach.call(P.querySelectorAll('[data-sig]'),function(b){b.disabled=true;if(b.getAttribute('data-sig')===x.a) b.classList.add('right');});
+  if(!ok&&btn) btn.classList.add('wrongc');
+  refreshDots();
+  var last=ROUND.items.length>=ROUND.n;
+  fb(ok?'ok':'no',(ok?'✓ ':'✗ Rigtigt: <b>'+esc(x.a)+'</b>. ')+esc(x.why)+'<br>'+nextBtn(last?'Se din runde →':'Videre →'),(ok?'Ja! ':'')+x.why);
+  var nb=$('next'); if(nb){nb.onclick=function(){nextRoundTask();};nb.focus();}
+  saveNow();
+}
+function signalStats(items){var s=items.filter(function(i){return i.signal&&i.ok!=null;});return {n:s.length,ok:s.filter(function(i){return i.ok;}).length,miss:s.filter(function(i){return !i.ok;}).map(function(i){return i.word;})};}
+function signalParentLine(){
+  var a=S.signals||[]; if(!a.length) return '';
+  var by={}; a.forEach(function(r){var b=by[r.word]||(by[r.word]={n:0,ok:0});b.n++;if(r.ok) b.ok++;});
+  var weak=Object.keys(by).filter(function(k){return by[k].ok<by[k].n;}).sort(function(x,y){return (by[x].ok/by[x].n)-(by[y].ok/by[y].n);}).slice(0,5);
+  return '<br><b>Signalord:</b> '+a.filter(function(r){return r.ok;}).length+' af '+a.length+' rigtige'+(weak.length?' · svære: '+weak.map(function(k){return esc(k)+' ('+by[k].ok+'/'+by[k].n+')';}).join(', '):'');
+}
+
+// ---------------- school assignments (v2.0) ----------------
+// A school PDF/photo is converted (by Claude, outside the app) into a JSON file the parent imports.
+// Each "opgave" becomes a linked set with shared intro, parts, følgefejl and optional plans.
+// The content lives in this browser + the online copy – never in the public app file.
+var SK_SCHEMA='louis-fp9-skoleopgave/v1';
+function skFn(expr){ // tiny safe expression for følgefejl: only x, numbers and + - * / ( )
+  if(typeof expr!=='string'||!/^[x0-9+\-*/(). ]+$/.test(expr)) return null;
+  try{var f=new Function('x','return ('+expr+');'); f(1); return f;}catch(e){return null;}
+}
+function skValid(s){
+  if(!s||typeof s.id!=='string'||!/^[a-z0-9-]{2,40}$/.test(s.id)) return 'id (små bogstaver, tal og -)';
+  if(!s.title||!s.intro) return 'title/intro mangler';
+  if(!Array.isArray(s.parts)||!s.parts.length||s.parts.length>8) return '1–8 delopgaver';
+  if(s.fig&&/<script|on\w+=|https?:/i.test(s.fig)) return 'fig ikke tilladt';
+  for(var i=0;i<s.parts.length;i++){var p=s.parts[i], tp=p.type||'num';
+    if(!p.text||!Array.isArray(p.hints)||p.hints.length!==3) return 'del '+(i+1)+': text og 3 hints';
+    if(!Array.isArray(p.cards)||!p.cards.length||p.cards.some(function(c){return !CT[c];})) return 'del '+(i+1)+': ukendt kort-id';
+    if(!Array.isArray(p.skills)||!p.skills.length) return 'del '+(i+1)+': skills';
+    if(tp==='num'&&!(typeof p.answer==='number'&&isFinite(p.answer))) return 'del '+(i+1)+': answer skal være et tal';
+    if(tp==='choice'&&(!Array.isArray(p.choices)||!p.choices[p.answer])) return 'del '+(i+1)+': choices/answer';
+    if(p.dep&&(!(p.dep.from>=0&&p.dep.from<i)||!skFn(p.dep.f))) return 'del '+(i+1)+': dep';
+    if(p.fig&&/<script|on\w+=|https?:/i.test(p.fig)) return 'del '+(i+1)+': fig';
+  }
+  return null;
+}
+function skImport(j){
+  var ok=0,bad=[];
+  if(j.skills) Object.keys(j.skills).forEach(function(k){if(!SKILLS[k]) SKILLS[k]=j.skills[k];});
+  if(j.skills) S.extraSkills=Object.assign(S.extraSkills||{},j.skills);
+  (j.sets||[]).forEach(function(s){var e=skValid(s); if(e){bad.push((s&&s.id||'?')+': '+e);return;}
+    var rec={t:now(),id:s.id,source:j.source||'',title:s.title,intro:s.intro,table:s.table||null,fig:s.fig||null,parts:s.parts,imported:now(),order:s.order||0};
+    S.extraSets=(S.extraSets||[]).filter(function(x){return x.id!==s.id;}); S.extraSets.push(rec); ok++;});
+  Object.keys(VT).forEach(function(k){if(/^skole-/.test(k)) delete VT[k];});
+  return {ok:ok,bad:bad};
+}
+function skSet(id){for(var i=0;i<(S.extraSets||[]).length;i++) if(S.extraSets[i].id===id) return S.extraSets[i];return null;}
+function skBuild(id){
+  var s=skSet(id); if(!s) return null; var key='skole-'+id+':'+now();
+  return {id:id,title:s.title,parts:s.parts.map(function(p0,i){
+    var p=JSON.parse(JSON.stringify(p0)); p.type=p.type||'num'; p.wrong=p.wrong||[];
+    p.letter=LET[i]; p.partIdx=i; p.setKey=key; p.setId='skole-'+id; p.seed=0; p.generated=true; p.school=true;
+    if(p.dep){var f=skFn(p.dep.f); p.dep={from:p.dep.from,f:f};}
+    p.context={title:s.title,intro:s.intro,table:s.table||null,fig:s.fig||null};
+    return p;})};
+}
+function skVtask(id){
+  var m=/^skole-([a-z0-9-]+)#([a-h])$/.exec(id||''); if(!m) return null;
+  var s=skSet(m[1]), i=LET.indexOf(m[2]), p=s&&s.parts[i]; if(!p) return null;
+  VT[id]={id:id,title:s.title+' '+m[2]+')',skills:p.skills,cards:p.cards,type:p.type||'num',wef:'analytisk',versions:[],part:true,school:true};
+  return VT[id];
+}
+function skQueue(id){
+  var s=skBuild(id); if(!s) return [];
+  return s.parts.map(function(p){return {t:skVtask('skole-'+id+'#'+p.letter),v:p};});
+}
+function skProgress(id){
+  var s=skSet(id), n=s?s.parts.length:0, done=0, first=0;
+  for(var i=0;i<n;i++){var tid='skole-'+id+'#'+LET[i], rs=S.runs.filter(function(r){return r.task===tid&&r.end;});
+    if(rs.some(function(r){return r.status==='rigtig';})) done++;
+    if(rs.some(function(r){return r.status==='rigtig'&&!r.wrong&&!r.hintMax&&!r.ai;})) first++;}
+  return {n:n,done:done,first:first};
+}
+function skoleTile(){
+  var n=(S.extraSets||[]).length; if(!n) return '';
+  var open=(S.extraSets||[]).filter(function(s){var p=skProgress(s.id);return p.done<p.n;}).length;
+  return tile('skole','📚','Skoleopgaver',n+' opgaver fra skolen',open?open+' ikke færdige':'Alle løst ✓','#5b21b6','');
+}
+function skoleScreen(){
+  stopSpeak();
+  var L=(S.extraSets||[]).slice().sort(function(a,b){return (a.source||'').localeCompare(b.source||'')||(a.order||0)-(b.order||0)||a.title.localeCompare(b.title);});
+  var by={}; L.forEach(function(s){(by[s.source||'Skoleopgaver']=by[s.source||'Skoleopgaver']||[]).push(s);});
+  var h='<div class="home"><h2>📚 Skoleopgaver</h2><p class="today">Opgaver fra skolen – med formelsamling, hjælp og plan.</p></div>';
+  Object.keys(by).forEach(function(src){
+    h+='<h3 class="sub3">'+esc(src)+'</h3><div class="sklist">'+by[src].map(function(s){var p=skProgress(s.id);
+      return '<button class="skrow'+(p.done===p.n?' done':'')+'" data-sk="'+esc(s.id)+'"><span class="skt">'+esc(s.title)+'</span><span class="skp">'+(p.done===p.n?'✓ ':'')+p.done+'/'+p.n+' delopgaver</span></button>';}).join('')+'</div>';
+  });
+  h+='<div class="tools"><button class="tbtn" id="home">← Tilbage</button></div>';
+  P.innerHTML=h; P.scrollTop=0; setTab('task');
+  [].forEach.call(P.querySelectorAll('[data-sk]'),function(b){b.onclick=function(){startRound('skole',b.getAttribute('data-sk'));};});
+  $('home').onclick=homeScreen;
+  log('view_skole',{n:L.length});
+}
+
+window.TRAINING={skole:{importJSON:function(j){return skImport(j);},screen:function(){skoleScreen();},sets:function(){return S.extraSets||[];},progress:function(id){return skProgress(id);}},plan:{prep:function(t,v){return planPrep(t,v);},state:function(){return PLS;},defs:function(){return Object.keys(PL);},raw:function(){return PL;},tokens:function(s){return planTokens(s);},form:function(u){return formOptions(u);},signals:function(){return SIGNALS;},start:function(o){planStart(o);},stats:function(rs){return planStats(rs||S.runs);}},cloud:{merge:function(a,b,c){return cloudMerge(a,b,c);},CL:function(){return CL;},state:function(){return S;},saveNow:function(){saveNow();},sync:function(i){return cloudSync(i);},afterLogin:function(){return cloudAfterLogin();},view:function(){return cloudView();},importText:function(t){return cloudImportText(t);},panel:function(){return cloudPanel();},login:function(){cloudLogin();}},ad:function(){return AD();},diagnose:function(rs){return diagnose(rs);},readAloud:function(){readAloud();},distractors:function(id){return drillDistractors(taskById(id));},startRound:function(m,k){startRound(m,k||null);},home:function(){homeScreen();},drillAnswer:function(c){drillAnswer(c,'test');},drill:function(){return DRILL;},round:function(){return ROUND;},buildExamFile:function(){return buildExamFile();},state:function(){return S;},metrics:metrics,buildExport:buildExport,summary:summary,current:function(){return {run:run,task:task&&task.id,ver:ver};},newTask:function(id){startRound('fri',null,taskById(id));},flushSearch:commitSearch};
 
 window.addEventListener('pagehide',function(){stopMic();Object.keys(vis).forEach(endView);finalizeSearch();SESSION.end=now();saveNow();});
 log('session_start',{ai:aiOn(),speech:SESSION.speech,tasks:allTasks().length});
